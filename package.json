@@ -1,0 +1,18 @@
+{
+  "name": "movie-slicer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "webpack -w"
+  },
+  "keywords": [],
+  "author": "leader22",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.2",
+    "electron-reloader": "^0.2.0",
+    "webpack": "^3.11.0"
+  }
+}
