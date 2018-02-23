@@ -11,8 +11,23 @@
   "author": "leader22",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react": "^6.24.1",
     "electron": "^1.8.2",
     "electron-reloader": "^0.2.0",
     "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "immer": "^1.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ]
   }
 }
