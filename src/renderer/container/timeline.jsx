@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Rnd from 'react-rnd';
 
-const TimelineContainer = ({ timelineWidth, selectorDefaultWidth }) => (
+import { setCurrentTime } from '../action';
+
+const TimelineContainer = ({ timelineWidth, selectorDefaultWidth, onDrag }) => (
   <div style={{ overflowX: 'auto' }}>
     <div
       style={{
@@ -15,6 +17,7 @@ const TimelineContainer = ({ timelineWidth, selectorDefaultWidth }) => (
         bounds="parent"
         dragAxis="x"
         style={{ backgroundColor: '#eee' }}
+        onDrag={(_, data) => onDrag(data.x / timelineWidth)}
       />
     </div>
   </div>
@@ -26,6 +29,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onDrag(ratio) {
+    dispatch(setCurrentTime(ratio));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimelineContainer);

@@ -10,6 +10,7 @@ const initialState = {
   movie: {
     path: '',
     duration: 0,
+    currentTime: 0,
   },
 };
 
@@ -23,6 +24,9 @@ export default (state = initialState, { type, payload }) =>
         break;
       case 'GET_VIDEO_DURATION':
         draft.movie.duration = payload;
+        break;
+      case 'SET_CURRENT_TIME':
+        draft.movie.currentTime = draft.movie.duration * payload;
         break;
       default:
     }
