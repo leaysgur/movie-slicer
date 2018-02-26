@@ -9,11 +9,11 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) =>
   produce(state, draft => {
-    console.warn(type);
+    console.warn(type, payload);
     switch (type) {
       case 'LOAD_FILE':
         draft.route = 'editor';
-        draft.movie.path = payload.path;
+        draft.movie.path = payload;
         break;
       default:
     }

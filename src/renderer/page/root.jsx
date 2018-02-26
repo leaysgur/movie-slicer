@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import StandbyPage from './page/standby';
-import EditorPage from './page/editor';
+import StandbyPage from './standby';
+import EditorPage from './editor';
 
 class App extends React.Component {
   render() {
@@ -20,10 +20,8 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    route: state.route,
-  };
-}
+const mapStateToProps = state => ({
+  route: state.route,
+});
 
 export default connect(mapStateToProps)(App);

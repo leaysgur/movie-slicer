@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const EditorPage = () => (
+const EditorPage = ({ movie }) => (
   <div>
-    Editor
+    <video src={movie.path} preload="auto"></video>
+    <div>Timeline</div>
+    <div>
+      <div>Info</div>
+      <div>Action</div>
+    </div>
   </div>
 );
 
-export default connect(null)(EditorPage);
+const mapStateToProps = state => ({
+  movie: state.movie,
+});
+
+export default connect(mapStateToProps)(EditorPage);

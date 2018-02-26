@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const StandbyPage = ({ onChange }) => (
+import { loadFile } from '../action';
+
+const StandbyPage = ({ onChangeFile }) => (
   <div>
-    <input type="file" onChange={onChange} />
+    <input type="file" onChange={onChangeFile} />
   </div>
 );
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onChange(ev) {
-      dispatch({ type: 'LOAD_FILE', payload: ev.target.files[0] });
-    }
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onChangeFile(ev) {
+    dispatch(loadFile(ev.target.files[0]));
+  }
+});
 
 export default connect(null, mapDispatchToProps)(StandbyPage);
