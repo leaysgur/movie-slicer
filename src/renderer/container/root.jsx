@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import StandbyPage from './standby';
-import EditorPage from './editor';
+import StandbyPage from '../page/standby';
+import EditorPage from '../page/editor';
 
-const Root = ({ route }) => {
+const RootContainer = ({ route }) => {
   if (route === 'standby') {
     return <StandbyPage />;
   }
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
   route: state.route,
 });
 
-export default connect(mapStateToProps)(Root);
+export default connect(mapStateToProps)(RootContainer);

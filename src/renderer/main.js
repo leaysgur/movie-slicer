@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import Root from './page/root';
+import Root from './container/root';
 import reducer from './reducer';
 
 import { loadFile } from './action'; // TODO: debug

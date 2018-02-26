@@ -1,34 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import Video from '../component/video';
-import { getVideoDuration } from '../action';
+import Player from '../container/player';
 
-const EditorPage = ({ movie, onVideoMetadataLoaded }) => (
+const EditorPage = () => (
   <div className="P-Editor">
-    <Video
-      movie={movie}
-      onLoadedMetadata={onVideoMetadataLoaded}
-    />
+    <Player />
     <div>Timeline</div>
     <div>
-      <div>
-        Info
-        <p>Duraion: {movie.duration}</p>
-      </div>
+      <div>Info</div>
       <div>Action</div>
     </div>
   </div>
 );
 
-const mapStateToProps = state => ({
-  movie: state.movie,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onVideoMetadataLoaded($video) {
-    dispatch(getVideoDuration($video));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditorPage);
+export default EditorPage;
