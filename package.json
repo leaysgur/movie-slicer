@@ -5,17 +5,21 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "electron .",
-    "dev": "webpack -w"
+    "dev": "webpack -w",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "leader22",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
     "babel-preset-react": "^6.24.1",
     "electron": "^1.8.2",
     "electron-reloader": "^0.2.0",
+    "eslint": "^4.18.1",
+    "eslint-plugin-react": "^7.7.0",
     "webpack": "^3.11.0"
   },
   "dependencies": {
