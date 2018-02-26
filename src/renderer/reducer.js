@@ -3,7 +3,7 @@ import produce from 'immer';
 const initialState = {
   route: 'standby',
   ui: {
-    secByPx: 10,
+    secByPx: 10, // 10sec/pxで表示
   },
   movie: {
     path: '',

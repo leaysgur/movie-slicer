@@ -1,7 +1,7 @@
 {
   "name": "movie-slicer",
   "version": "0.0.0",
-  "description": "",
+  "description": "Movie slicer for Twitter",
   "main": "./src/index.js",
   "scripts": {
     "start": "electron .",
@@ -10,6 +10,10 @@
   },
   "keywords": [],
   "author": "leader22",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leader22/movie-slicer.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -27,6 +31,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
+    "react-rnd": "^7.3.0",
     "redux": "^3.7.2"
   },
   "babel": {
