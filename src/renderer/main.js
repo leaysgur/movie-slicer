@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import Root from './page/root';
 import reducer from './reducer';
 
+import { loadFile } from './action'; // TODO: debug
+
 window.addEventListener('load', () => {
   const store = createStore(reducer);
   ReactDOM.render(
@@ -14,4 +16,7 @@ window.addEventListener('load', () => {
     </Provider>,
     document.getElementById('app')
   );
+
+  // TODO: debug
+  store.dispatch(loadFile({ path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4' }));
 });

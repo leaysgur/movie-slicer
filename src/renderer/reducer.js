@@ -4,6 +4,7 @@ const initialState = {
   route: 'standby',
   movie: {
     path: '',
+    duration: 0,
   },
 };
 
@@ -14,6 +15,9 @@ export default (state = initialState, { type, payload }) =>
       case 'LOAD_FILE':
         draft.route = 'editor';
         draft.movie.path = payload;
+        break;
+      case 'GET_VIDEO_DURATION':
+        draft.movie.duration = payload;
         break;
       default:
     }
