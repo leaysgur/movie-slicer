@@ -5,7 +5,7 @@ const initialState = {
     route: 'standby',
   },
   timeline: {
-    secByPx: 10, // 10sec/pxで表示
+    pxAs1Sec: 10,
   },
   movie: {
     path: '',

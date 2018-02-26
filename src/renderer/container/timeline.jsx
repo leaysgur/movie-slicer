@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Rnd from 'react-rnd';
 
-const TimelineContainer = ({ timelineWidth }) => (
+const TimelineContainer = ({ timelineWidth, selectorDefaultWidth }) => (
   <div style={{ overflowX: 'auto' }}>
     <div
       style={{
@@ -10,7 +10,7 @@ const TimelineContainer = ({ timelineWidth }) => (
       }}
     >
       <Rnd
-        default={{ x: 0, y: 0, width: 20, }}
+        default={{ x: 0, y: 0, width: selectorDefaultWidth, }}
         minHeight="100%"
         bounds="parent"
         dragAxis="x"
@@ -21,7 +21,8 @@ const TimelineContainer = ({ timelineWidth }) => (
 );
 
 const mapStateToProps = state => ({
-  timelineWidth: state.movie.duration / state.ui.secByPx,
+  timelineWidth: state.movie.duration / state.timeline.pxAs1Sec,
+  selectorDefaultWidth: state.timeline.pxAs1Sec * 30,
 });
 
 const mapDispatchToProps = dispatch => ({
