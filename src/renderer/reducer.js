@@ -2,6 +2,9 @@ import produce from 'immer';
 
 const initialState = {
   route: 'standby',
+  ui: {
+    secByPx: 10,
+  },
   movie: {
     path: '',
     duration: 0,

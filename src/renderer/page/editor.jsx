@@ -1,11 +1,12 @@
 import React from 'react';
 
 import Player from '../container/player';
+import Timeline from '../container/timeline';
 
 const EditorPage = () => (
   <div className="P-Editor">
     <Player />
-    <div>Timeline</div>
+    <Timeline />
     <div>
       <div>Info</div>
       <div>Action</div>
