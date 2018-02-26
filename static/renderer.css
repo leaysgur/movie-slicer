@@ -7,7 +7,7 @@ body {
 
 .P-Editor {
   display: grid;
-  grid-template-rows: calc(100vh - 250px) 150px 100px;
+  grid-template-rows: calc(100vh - 100px) 50px 50px;
 }
 
 .Video {
