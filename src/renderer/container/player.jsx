@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import Video from '../component/video';
 import { getVideoDuration } from '../action';
 
-const PlayerContainer = ({ movie, onVideoMetadataLoaded }) => (
+const PlayerContainer = ({ movie, dispatch }) => (
   <Video
     movie={movie}
-    onLoadedMetadata={onVideoMetadataLoaded}
+    onLoadedMetadata={el => dispatch(getVideoDuration(el))}
   />
 );
 
@@ -15,10 +15,4 @@ const mapStateToProps = state => ({
   movie: state.movie,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onVideoMetadataLoaded($video) {
-    dispatch(getVideoDuration($video));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);
+export default connect(mapStateToProps)(PlayerContainer);

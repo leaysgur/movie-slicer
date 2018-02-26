@@ -3,15 +3,8 @@ import { connect } from 'react-redux';
 
 import { loadFile } from '../action';
 
-const DropperContainer = ({ onChangeFile }) => (
-  <input type="file" onChange={onChangeFile} />
+const DropperContainer = ({ dispatch }) => (
+  <input type="file" onChange={ev => dispatch(loadFile(ev.target.files[0]))} />
 );
 
-const mapDispatchToProps = dispatch => ({
-  onChangeFile(ev) {
-    dispatch(loadFile(ev.target.files[0]));
-  }
-});
-
-
-export default connect(null, mapDispatchToProps)(DropperContainer);
+export default connect()(DropperContainer);
