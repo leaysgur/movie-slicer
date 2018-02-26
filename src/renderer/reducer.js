@@ -1,8 +1,10 @@
 import produce from 'immer';
 
 const initialState = {
-  route: 'standby',
   ui: {
+    route: 'standby',
+  },
+  timeline: {
     secByPx: 10, // 10sec/pxで表示
   },
   movie: {
@@ -16,7 +18,7 @@ export default (state = initialState, { type, payload }) =>
     console.warn(type, payload);
     switch (type) {
       case 'LOAD_FILE':
-        draft.route = 'editor';
+        draft.ui.route = 'editor';
         draft.movie.path = payload;
         break;
       case 'GET_VIDEO_DURATION':

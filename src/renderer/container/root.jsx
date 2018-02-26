@@ -16,7 +16,7 @@ const RootContainer = ({ route }) => {
 };
 
 const mapStateToProps = state => ({
-  route: state.route,
+  route: state.ui.route,
 });
 
 export default connect(mapStateToProps)(RootContainer);
