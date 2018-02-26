@@ -15,7 +15,6 @@ const TimelineContainer = ({
       style={{
         width: `${timelineWidth}px`, height: '100%', backgroundColor: 'tomato'
       }}
-      onClick={() => console.log('TODO')}
     >
       <Rnd
         default={{ x: 0, y: 0, width: selectorDefaultWidth, }}
@@ -24,8 +23,12 @@ const TimelineContainer = ({
         bounds="parent"
         dragAxis="x"
         style={{ backgroundColor: '#eee' }}
-        onDrag={(_ev, data) => dispatch(setCurrentTime(data.x / timelineWidth))}
-        onResize={(_ev, dir, _ref, _delta, pos) => dir === 'left' && dispatch(setCurrentTime(pos.x / timelineWidth))}
+        onDrag={(_ev, data) => {
+          dispatch(setCurrentTime(data.x / timelineWidth));
+        }}
+        onResize={(_ev, dir, _ref, _delta, pos) => {
+          dir === 'left' && dispatch(setCurrentTime(pos.x / timelineWidth));
+        }}
       />
     </div>
   </div>
