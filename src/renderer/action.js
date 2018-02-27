@@ -8,8 +8,8 @@ export const getVideoDuration = $video => ({
   payload: $video.duration,
 });
 
-export const setCurrentTime = percentage => ({
-  type: 'SET_CURRENT_TIME',
+export const setVideoCurrentTime = percentage => ({
+  type: 'SET_VIDEO_CURRENT_TIME',
   payload: percentage,
 });
 

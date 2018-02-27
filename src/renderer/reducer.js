@@ -32,7 +32,7 @@ export default (state = initialState, { type, payload }) =>
       case 'GET_VIDEO_CURRENT_TIME':
         draft.movie.currentTimeDisp = payload;
         break;
-      case 'SET_CURRENT_TIME': {
+      case 'SET_VIDEO_CURRENT_TIME': {
         const currentTime = Math.max(0, draft.movie.duration * payload);
         draft.movie.currentTime = currentTime;
         draft.movie.currentTimeDisp = currentTime;

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Rnd from 'react-rnd';
 
-import { setCurrentTime } from '../action';
+import { setVideoCurrentTime } from '../action';
 
 const TimelineContainer = ({
   timelineWidth,
@@ -25,11 +25,11 @@ const TimelineContainer = ({
         dragAxis="x"
         style={{ backgroundColor: '#eee' }}
         onDrag={(_ev, data) => {
-          dispatch(setCurrentTime(data.x / timelineWidth));
+          dispatch(setVideoCurrentTime(data.x / timelineWidth));
         }}
         onResize={(_ev, dir, ref, _delta, pos) => {
           const posX = dir === 'left' ? pos.x : pos.x + parseInt(ref.style.width);
-          dispatch(setCurrentTime(posX / timelineWidth));
+          dispatch(setVideoCurrentTime(posX / timelineWidth));
         }}
       />
     </div>
