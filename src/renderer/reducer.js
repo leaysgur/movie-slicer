@@ -5,7 +5,7 @@ const initialState = {
     route: 'standby',
   },
   timeline: {
-    pxAs1Sec: 10,
+    pxAs1Sec: 0.5,
   },
   movie: {
     path: '',
@@ -26,7 +26,7 @@ export default (state = initialState, { type, payload }) =>
         draft.movie.duration = payload;
         break;
       case 'SET_CURRENT_TIME':
-        draft.movie.currentTime = draft.movie.duration * payload;
+        draft.movie.currentTime = Math.max(0, draft.movie.duration * payload);
         break;
       default:
     }
