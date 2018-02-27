@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Timeline from '../component/timeline';
-import Selector from '../component/selector';
+import Timeline from '../../component/editor/timeline';
+import Selector from '../../component/editor/selector';
 
 import {
   setVideoCurrentTime,
   setSelectStartSec,
   setSelectEndSec,
-} from '../action';
+} from '../../action';
 
 const TimelineContainer = ({
   timelineWidth,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Video from '../component/video';
+import Video from '../../component/editor/video';
 import {
   getVideoDuration,
   getVideoCurrentTime,
-} from '../action';
+} from '../../action';
 
 const PlayerContainer = ({
   movie,
