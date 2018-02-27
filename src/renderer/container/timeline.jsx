@@ -51,7 +51,7 @@ const TimelineContainer = ({
 );
 
 const mapStateToProps = state => ({
-  timelineWidth: state.movie.duration * state.timeline.pxAs1Sec,
+  timelineWidth: state.timeline.pxAs1Sec * state.movie.duration,
   selectStartX: state.timeline.pxAs1Sec * state.timeline.selectStartSec,
   selectorDefaultWidth: state.timeline.pxAs1Sec * state.timeline.selectingSec,
   selectorMinWidth: state.timeline.pxAs1Sec * state.timeline.minSelectingSec,
