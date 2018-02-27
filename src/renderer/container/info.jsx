@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const InfoContainer = ({ movie, timeline }) => (
   <div>
-    Playing: {movie.currentTimeDisp}/{movie.duration}sec | Selecting: {timeline.selectStartSec}-{timeline.selectingSec}sec
+    Playing: {movie.currentTimeDisp}/{movie.duration}sec | Selecting: from {timeline.selectStartSec}sec({timeline.selectingSec}sec)
   </div>
 );
 

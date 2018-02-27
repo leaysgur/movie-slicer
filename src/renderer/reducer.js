@@ -8,6 +8,7 @@ const initialState = {
     pxAs1Sec: 0.5,
     selectStartSec: 0,
     selectingSec: 30,
+    minSelectingSec: 5,
     maxSelectingSec: 140,
   },
   movie: {
@@ -39,8 +40,13 @@ export default (state = initialState, { type, payload }) =>
         break;
       }
       case 'SET_SELECT_START_SEC': {
-        const currentTime = Math.max(0, draft.movie.duration * payload);
-        draft.timeline.selectStartSec = currentTime;
+        const startTime = Math.max(0, draft.movie.duration * payload);
+        draft.timeline.selectStartSec = startTime;
+        break;
+      }
+      case 'SET_SELECT_END_SEC': {
+        const endTime = Math.max(0, draft.movie.duration * payload);
+        draft.timeline.selectingSec = endTime - draft.timeline.selectStartSec;
         break;
       }
       default:

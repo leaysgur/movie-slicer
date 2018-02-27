@@ -22,3 +22,8 @@ export const setSelectStartSec = percentage => ({
   type: 'SET_SELECT_START_SEC',
   payload: percentage,
 });
+
+export const setSelectEndSec = percentage => ({
+  type: 'SET_SELECT_END_SEC',
+  payload: percentage,
+});

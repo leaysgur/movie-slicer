@@ -5,12 +5,14 @@ import Rnd from 'react-rnd';
 import {
   setVideoCurrentTime,
   setSelectStartSec,
+  setSelectEndSec,
 } from '../action';
 
 const TimelineContainer = ({
   timelineWidth,
   selectStartX,
   selectorDefaultWidth,
+  selectorMinWidth,
   selectorMaxWidth,
   dispatch,
 }) => (
@@ -23,6 +25,7 @@ const TimelineContainer = ({
       <Rnd
         default={{ x: selectStartX, y: 0, width: selectorDefaultWidth, }}
         minHeight="100%"
+        minWidth={selectorMinWidth}
         maxWidth={selectorMaxWidth}
         bounds="parent"
         dragAxis="x"
@@ -32,8 +35,15 @@ const TimelineContainer = ({
           dispatch(setSelectStartSec(data.x / timelineWidth));
         }}
         onResize={(_ev, dir, ref, _delta, pos) => {
-          const posX = dir === 'left' ? pos.x : pos.x + parseInt(ref.style.width);
-          dispatch(setVideoCurrentTime(posX / timelineWidth));
+          if (dir === 'left') {
+            dispatch(setVideoCurrentTime(pos.x / timelineWidth));
+            dispatch(setSelectStartSec(pos.x / timelineWidth));
+            dispatch(setSelectEndSec((pos.x + parseInt(ref.style.width)) / timelineWidth));
+          }
+          if (dir === 'right') {
+            dispatch(setVideoCurrentTime((pos.x + parseInt(ref.style.width)) / timelineWidth));
+            dispatch(setSelectEndSec((pos.x + parseInt(ref.style.width)) / timelineWidth));
+          }
         }}
       />
     </div>
@@ -44,6 +54,7 @@ const mapStateToProps = state => ({
   timelineWidth: state.movie.duration * state.timeline.pxAs1Sec,
   selectStartX: state.timeline.pxAs1Sec * state.timeline.selectStartSec,
   selectorDefaultWidth: state.timeline.pxAs1Sec * state.timeline.selectingSec,
+  selectorMinWidth: state.timeline.pxAs1Sec * state.timeline.minSelectingSec,
   selectorMaxWidth: state.timeline.pxAs1Sec * state.timeline.maxSelectingSec,
 });
 
