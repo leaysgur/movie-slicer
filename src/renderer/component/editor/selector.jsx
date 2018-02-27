@@ -16,8 +16,10 @@ const Selector = ({
   >
     <Rnd
       className="Selector_Bar"
-      default={{ x: selectStartX, y: 0, width: selectorDefaultWidth, }}
+      position={{ x: selectStartX, y: 0 }}
+      size={{ width: selectorDefaultWidth, height: '100%' }}
       minHeight="100%"
+      maxHeight="100%"
       minWidth={selectorMinWidth}
       maxWidth={selectorMaxWidth}
       bounds="parent"
