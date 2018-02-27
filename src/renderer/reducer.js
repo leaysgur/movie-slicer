@@ -21,18 +21,21 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) =>
   produce(state, draft => {
-    // console.warn(type, payload);
+    console.warn(type, payload);
     switch (type) {
-      case 'LOAD_FILE':
+      case 'LOAD_FILE': {
         draft.ui.route = 'editor';
         draft.movie.path = payload;
         break;
-      case 'GET_VIDEO_DURATION':
+      }
+      case 'GET_VIDEO_DURATION': {
         draft.movie.duration = payload;
         break;
-      case 'GET_VIDEO_CURRENT_TIME':
+      }
+      case 'GET_VIDEO_CURRENT_TIME': {
         draft.movie.currentTimeDisp = payload;
         break;
+      }
       case 'SET_VIDEO_CURRENT_TIME': {
         const currentTime = Math.max(0, draft.movie.duration * payload);
         draft.movie.currentTime = currentTime;
