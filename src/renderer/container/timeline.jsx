@@ -26,8 +26,9 @@ const TimelineContainer = ({
         onDrag={(_ev, data) => {
           dispatch(setCurrentTime(data.x / timelineWidth));
         }}
-        onResize={(_ev, dir, _ref, _delta, pos) => {
-          dir === 'left' && dispatch(setCurrentTime(pos.x / timelineWidth));
+        onResize={(_ev, dir, ref, _delta, pos) => {
+          const posX = dir === 'left' ? pos.x : pos.x + parseInt(ref.style.width);
+          dispatch(setCurrentTime(posX / timelineWidth));
         }}
       />
     </div>
