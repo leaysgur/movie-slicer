@@ -7,7 +7,7 @@ class Video extends React.Component {
   }
 
   render() {
-    const { movie, onLoadedMetadata, onTimeUpdate } = this.props;
+    const { movie, onLoadedMetadata } = this.props;
     return (
       <video
         ref={el => this._el = el}
@@ -15,7 +15,7 @@ class Video extends React.Component {
         src={movie.path}
         autoPlay
         onLoadedMetadata={ev => onLoadedMetadata(ev.target)}
-        onTimeUpdate={ev => onTimeUpdate(ev.target)}
+        onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
         onClick={() => this._onClick()}
       ></video>
     );
@@ -43,6 +43,15 @@ class Video extends React.Component {
 
   _onClick() {
     this._el.paused ? this._el.play() : this._el.pause();
+  }
+
+  _onTimeUpdate(el) {
+    const { onTimeUpdate, startTime, endTime } = this.props;
+    onTimeUpdate(el);
+
+    if (el.currentTime > endTime) {
+      el.currentTime = startTime;
+    }
   }
 }
 
