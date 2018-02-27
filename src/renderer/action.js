@@ -27,3 +27,13 @@ export const setSelectEndSec = percentage => ({
   type: 'SET_SELECT_END_SEC',
   payload: percentage,
 });
+
+export const zoomIn = () => ({
+  type: 'ZOOM_IN',
+  payload: null,
+});
+
+export const zoomOut = () => ({
+  type: 'ZOOM_OUT',
+  payload: null,
+});

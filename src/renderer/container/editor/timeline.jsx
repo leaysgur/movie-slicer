@@ -8,6 +8,8 @@ import {
   setVideoCurrentTime,
   setSelectStartSec,
   setSelectEndSec,
+  zoomIn,
+  zoomOut,
 } from '../../action';
 
 const TimelineContainer = ({
@@ -18,7 +20,16 @@ const TimelineContainer = ({
   selectorMaxWidth,
   dispatch,
 }) => (
-  <Timeline>
+  <Timeline
+    {...{
+      onClickZoomIn() {
+        dispatch(zoomIn());
+      },
+      onClickZoomOut() {
+        dispatch(zoomOut());
+      },
+    }}
+  >
     <Selector
       {...{
         timelineWidth,

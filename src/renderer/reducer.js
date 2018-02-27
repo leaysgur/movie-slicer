@@ -3,9 +3,11 @@ import produce from 'immer';
 const initialState = {
   ui: {
     route: 'standby',
+    zoomLv: 3,
+    zoomLvs: [0.125, 0.25, 0.5, 1, 2]
   },
   timeline: {
-    pxAs1Sec: 0.5,
+    pxAs1Sec: 1, // = ui.zoomLvs[ui.zoomLv]
     selectStartSec: 0,
     selectingSec: 30,
     minSelectingSec: 5,
@@ -21,7 +23,6 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) =>
   produce(state, draft => {
-    console.warn(type, payload);
     switch (type) {
       case 'LOAD_FILE': {
         draft.ui.route = 'editor';
@@ -50,6 +51,18 @@ export default (state = initialState, { type, payload }) =>
       case 'SET_SELECT_END_SEC': {
         const endTime = Math.max(0, draft.movie.duration * payload);
         draft.timeline.selectingSec = endTime - draft.timeline.selectStartSec;
+        break;
+      }
+      case 'ZOOM_IN': {
+        draft.ui.zoomLv = Math.min(draft.ui.zoomLv + 1, draft.ui.zoomLvs.length - 1);
+        draft.timeline.pxAs1Sec = draft.ui.zoomLvs[draft.ui.zoomLv];
+        console.warn(draft.timeline.pxAs1Sec);
+        break;
+      }
+      case 'ZOOM_OUT': {
+        draft.ui.zoomLv = Math.max(draft.ui.zoomLv - 1, 0);
+        draft.timeline.pxAs1Sec = draft.ui.zoomLvs[draft.ui.zoomLv];
+        console.warn(draft.timeline.pxAs1Sec);
         break;
       }
       default:

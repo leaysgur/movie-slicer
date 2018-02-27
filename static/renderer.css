@@ -18,11 +18,23 @@ body {
 }
 
 .Timeline {
+  position: relative;
+  overflow: hidden;
+}
+.Timeline_Scroller {
+  height: 100%;
   overflow-x: auto;
+}
+.Timeline_Controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .Selector {
-  background-color: #000;
+  position: relative;
+  background-color: #0094c8;
 }
 .Selector_Bar {
   background-color: #eee;

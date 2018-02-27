@@ -14,6 +14,7 @@ class Video extends React.Component {
         className="Video"
         src={movie.path}
         autoPlay
+        muted
         onLoadedMetadata={ev => onLoadedMetadata(ev.target)}
         onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
         onClick={() => this._onClick()}
