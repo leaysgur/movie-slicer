@@ -17,3 +17,8 @@ export const getVideoCurrentTime = $video => ({
   type: 'GET_VIDEO_CURRENT_TIME',
   payload: $video.currentTime,
 });
+
+export const setSelectStartSec = percentage => ({
+  type: 'SET_SELECT_START_SEC',
+  payload: percentage,
+});

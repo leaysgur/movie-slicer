@@ -20,7 +20,7 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) =>
   produce(state, draft => {
-    console.warn(type, payload);
+    // console.warn(type, payload);
     switch (type) {
       case 'LOAD_FILE':
         draft.ui.route = 'editor';
@@ -36,6 +36,11 @@ export default (state = initialState, { type, payload }) =>
         const currentTime = Math.max(0, draft.movie.duration * payload);
         draft.movie.currentTime = currentTime;
         draft.movie.currentTimeDisp = currentTime;
+        break;
+      }
+      case 'SET_SELECT_START_SEC': {
+        const currentTime = Math.max(0, draft.movie.duration * payload);
+        draft.timeline.selectStartSec = currentTime;
         break;
       }
       default:

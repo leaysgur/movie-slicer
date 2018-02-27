@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Rnd from 'react-rnd';
 
-import { setVideoCurrentTime } from '../action';
+import {
+  setVideoCurrentTime,
+  setSelectStartSec,
+} from '../action';
 
 const TimelineContainer = ({
   timelineWidth,
@@ -26,6 +29,7 @@ const TimelineContainer = ({
         style={{ backgroundColor: '#eee' }}
         onDrag={(_ev, data) => {
           dispatch(setVideoCurrentTime(data.x / timelineWidth));
+          dispatch(setSelectStartSec(data.x / timelineWidth));
         }}
         onResize={(_ev, dir, ref, _delta, pos) => {
           const posX = dir === 'left' ? pos.x : pos.x + parseInt(ref.style.width);
