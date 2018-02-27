@@ -13,14 +13,16 @@ class Video extends React.Component {
         ref={el => this._el = el}
         className="Video"
         src={movie.path}
-        preload="auto"
+        autoPlay
         onLoadedMetadata={ev => onLoadedMetadata(ev.target)}
+        onClick={() => this._onClick()}
       ></video>
     );
   }
 
   shouldComponentUpdate(nextProps) {
     // render only path changed(= for the first time)
+    // after that, just mutate properties
     if (nextProps.movie.path === this.props.movie.path) {
       return false;
     }
@@ -36,6 +38,10 @@ class Video extends React.Component {
     if (currentTime !== this.props.movie.currentTime) {
       this._el.currentTime = currentTime;
     }
+  }
+
+  _onClick() {
+    this._el.paused ? this._el.play() : this._el.pause();
   }
 }
 
