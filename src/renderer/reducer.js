@@ -6,6 +6,8 @@ const initialState = {
   },
   timeline: {
     pxAs1Sec: 0.5,
+    selectingSec: 30,
+    maxSelectingSec: 140,
   },
   movie: {
     path: '',
