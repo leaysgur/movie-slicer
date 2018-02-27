@@ -6,13 +6,15 @@ const initialState = {
   },
   timeline: {
     pxAs1Sec: 0.5,
+    selectStartSec: 0,
     selectingSec: 30,
     maxSelectingSec: 140,
   },
   movie: {
     path: '',
     duration: 0,
-    currentTime: 0,
+    currentTime: 0, // for manual update
+    currentTimeDisp: 0,
   },
 };
 
@@ -27,9 +29,15 @@ export default (state = initialState, { type, payload }) =>
       case 'GET_VIDEO_DURATION':
         draft.movie.duration = payload;
         break;
-      case 'SET_CURRENT_TIME':
-        draft.movie.currentTime = Math.max(0, draft.movie.duration * payload);
+      case 'GET_VIDEO_CURRENT_TIME':
+        draft.movie.currentTimeDisp = payload;
         break;
+      case 'SET_CURRENT_TIME': {
+        const currentTime = Math.max(0, draft.movie.duration * payload);
+        draft.movie.currentTime = currentTime;
+        draft.movie.currentTimeDisp = currentTime;
+        break;
+      }
       default:
     }
   });

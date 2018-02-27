@@ -6,6 +6,7 @@ import { setCurrentTime } from '../action';
 
 const TimelineContainer = ({
   timelineWidth,
+  selectStartX,
   selectorDefaultWidth,
   selectorMaxWidth,
   dispatch,
@@ -17,7 +18,7 @@ const TimelineContainer = ({
       }}
     >
       <Rnd
-        default={{ x: 0, y: 0, width: selectorDefaultWidth, }}
+        default={{ x: selectStartX, y: 0, width: selectorDefaultWidth, }}
         minHeight="100%"
         maxWidth={selectorMaxWidth}
         bounds="parent"
@@ -37,6 +38,7 @@ const TimelineContainer = ({
 
 const mapStateToProps = state => ({
   timelineWidth: state.movie.duration * state.timeline.pxAs1Sec,
+  selectStartX: state.timeline.pxAs1Sec * state.timeline.selectStartSec,
   selectorDefaultWidth: state.timeline.pxAs1Sec * state.timeline.selectingSec,
   selectorMaxWidth: state.timeline.pxAs1Sec * state.timeline.maxSelectingSec,
 });
