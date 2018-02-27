@@ -14,5 +14,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  background-color: #111;
+}
+
+.Timeline {
+  overflow-x: auto;
+}
+
+.Selector {
   background-color: #000;
+}
+.Selector_Bar {
+  background-color: #eee;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Rnd from 'react-rnd';
+
+import Timeline from '../component/timeline';
+import Selector from '../component/selector';
 
 import {
   setVideoCurrentTime,
@@ -16,25 +18,19 @@ const TimelineContainer = ({
   selectorMaxWidth,
   dispatch,
 }) => (
-  <div style={{ overflowX: 'auto' }}>
-    <div
-      style={{
-        width: `${timelineWidth}px`, height: '100%', backgroundColor: 'tomato'
-      }}
-    >
-      <Rnd
-        default={{ x: selectStartX, y: 0, width: selectorDefaultWidth, }}
-        minHeight="100%"
-        minWidth={selectorMinWidth}
-        maxWidth={selectorMaxWidth}
-        bounds="parent"
-        dragAxis="x"
-        style={{ backgroundColor: '#eee' }}
-        onDrag={(_ev, data) => {
+  <Timeline>
+    <Selector
+      {...{
+        timelineWidth,
+        selectStartX,
+        selectorDefaultWidth,
+        selectorMinWidth,
+        selectorMaxWidth,
+        onDrag(data) {
           dispatch(setVideoCurrentTime(data.x / timelineWidth));
           dispatch(setSelectStartSec(data.x / timelineWidth));
-        }}
-        onResize={(_ev, dir, ref, _delta, pos) => {
+        },
+        onResize(dir, ref, pos) {
           if (dir === 'left') {
             dispatch(setVideoCurrentTime(pos.x / timelineWidth));
             dispatch(setSelectStartSec(pos.x / timelineWidth));
@@ -44,10 +40,10 @@ const TimelineContainer = ({
             dispatch(setVideoCurrentTime((pos.x + parseInt(ref.style.width)) / timelineWidth));
             dispatch(setSelectEndSec((pos.x + parseInt(ref.style.width)) / timelineWidth));
           }
-        }}
-      />
-    </div>
-  </div>
+        },
+      }}
+    />
+  </Timeline>
 );
 
 const mapStateToProps = state => ({
