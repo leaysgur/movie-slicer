@@ -21,14 +21,8 @@ const TimelineContainer = ({
   dispatch,
 }) => (
   <Timeline
-    {...{
-      onClickZoomIn() {
-        dispatch(zoomIn());
-      },
-      onClickZoomOut() {
-        dispatch(zoomOut());
-      },
-    }}
+    onClickZoomIn={() => dispatch(zoomIn())}
+    onClickZoomOut={() => dispatch(zoomOut())}
   >
     <Selector
       {...{
@@ -37,20 +31,22 @@ const TimelineContainer = ({
         selectorDefaultWidth,
         selectorMinWidth,
         selectorMaxWidth,
-        onDrag(data) {
-          dispatch(setVideoCurrentTime(data.x / timelineWidth));
-          dispatch(setSelectStartSec(data.x / timelineWidth));
+        onClickSelector(percentage) {
+          dispatch(setVideoCurrentTime(percentage));
+          dispatch(setSelectStartSec(percentage));
         },
-        onResize(dir, ref, pos) {
-          if (dir === 'left') {
-            dispatch(setVideoCurrentTime(pos.x / timelineWidth));
-            dispatch(setSelectStartSec(pos.x / timelineWidth));
-            dispatch(setSelectEndSec((pos.x + parseInt(ref.style.width)) / timelineWidth));
-          }
-          if (dir === 'right') {
-            dispatch(setVideoCurrentTime((pos.x + parseInt(ref.style.width)) / timelineWidth));
-            dispatch(setSelectEndSec((pos.x + parseInt(ref.style.width)) / timelineWidth));
-          }
+        onDrag(percentage) {
+          dispatch(setVideoCurrentTime(percentage));
+          dispatch(setSelectStartSec(percentage));
+        },
+        onResizeLeft(lPercentage, rPercentage) {
+          dispatch(setVideoCurrentTime(lPercentage));
+          dispatch(setSelectStartSec(lPercentage));
+          dispatch(setSelectEndSec(rPercentage));
+        },
+        onResizeRight(rPercentage) {
+          dispatch(setVideoCurrentTime(rPercentage));
+          dispatch(setSelectEndSec(rPercentage));
         },
       }}
     />
