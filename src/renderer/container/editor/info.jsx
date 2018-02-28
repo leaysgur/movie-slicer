@@ -7,7 +7,7 @@ const InfoContainer = ({ movie, timeline }) => (
   <div>
     Playing: <Time sec={movie.currentTimeDisp} /> / <Time sec={movie.duration} />
     {' | '}
-    Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />
+    Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
   </div>
 );
 

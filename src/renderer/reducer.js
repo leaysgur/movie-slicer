@@ -52,7 +52,7 @@ export default (state = initialState, { type, payload }) =>
       }
       case 'SET_SELECT_END_SEC': {
         const endTime = Math.max(0, draft.movie.duration * payload);
-        draft.timeline.selectingSec = endTime - draft.timeline.selectStartSec;
+        draft.timeline.selectingSec = (endTime - draft.timeline.selectStartSec)|0;
         break;
       }
       case 'ZOOM_IN': {
