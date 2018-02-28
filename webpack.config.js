@@ -5,6 +5,7 @@ const rootPath = path.resolve('');
 const config = {
   context: rootPath,
   entry: './src/renderer/main.js',
+  target: 'electron-renderer',
   output: {
     path: `${rootPath}/static`,
     filename: 'renderer.bundle.js',

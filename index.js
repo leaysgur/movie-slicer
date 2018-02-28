@@ -1,15 +1,16 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { exec } = require('child_process');
 
 const rootPath = path.resolve('');
 
-try {
-  require('electron-reloader')(module, {
-    ignore: [`${rootPath}/src/renderer`],
-  });
-} catch (err) {
-  err;
-}
+// try {
+//   require('electron-reloader')(module, {
+//     ignore: [`${rootPath}/src/renderer`],
+//   });
+// } catch (err) {
+//   err;
+// }
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -34,6 +35,19 @@ function createWindow() {
     win = null;
   });
 }
+
+// TODO: fix
+ipcMain.on('cmd', (ev, arg) => {
+  console.log('exec', arg);
+  exec(arg, (err, stdout, stderr) => {
+    if (err || stderr) {
+      ev.sender.send('ng', err || stderr);
+      return;
+    }
+
+    ev.sender.send('ok', stdout);
+  });
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
