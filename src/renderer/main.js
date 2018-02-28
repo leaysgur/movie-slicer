@@ -18,5 +18,6 @@ window.addEventListener('load', () => {
   );
 
   // TODO: debug
-  store.dispatch(loadFile({ path: '/Users/leader22/Desktop/out.mp4', size: 9999 }));
+  store.dispatch(loadFile({ path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4', size: 9999 }));
+  // store.dispatch(loadFile({ path: '/Users/leader22/Desktop/out.mp4', size: 9999 }));
 });

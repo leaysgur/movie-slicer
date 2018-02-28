@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Time } from '../../component/editor/formatter';
+
 const InfoContainer = ({ movie, timeline }) => (
   <div>
-    Playing: {movie.currentTimeDisp}/{movie.duration}sec
+    Playing: <Time sec={movie.currentTimeDisp} /> / <Time sec={movie.duration} />
     {' | '}
-    Selecting: from {timeline.selectStartSec}-{timeline.selectStartSec + timeline.selectingSec}sec
+    Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />
   </div>
 );
 
