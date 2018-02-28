@@ -15,6 +15,7 @@ const initialState = {
   },
   movie: {
     path: '',
+    size: 0,
     duration: 0,
     currentTime: 0, // for manual update
     currentTimeDisp: 0,
@@ -26,7 +27,8 @@ export default (state = initialState, { type, payload }) =>
     switch (type) {
       case 'LOAD_FILE': {
         draft.ui.route = 'editor';
-        draft.movie.path = payload;
+        draft.movie.path = payload.path;
+        draft.movie.size = payload.size;
         break;
       }
       case 'GET_VIDEO_DURATION': {

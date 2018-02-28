@@ -7,7 +7,7 @@ body {
 
 .P-Editor {
   display: grid;
-  grid-template-rows: calc(100vh - 100px) 50px 50px;
+  grid-template-rows: calc(100vh - 120px) 30px 50px 40px;
 }
 
 .Video {
@@ -24,6 +24,7 @@ body {
 .Timeline_Scroller {
   height: 100%;
   overflow-x: auto;
+  background-color: #eee;
 }
 .Timeline_Controls {
   position: absolute;
@@ -34,8 +35,8 @@ body {
 
 .Selector {
   position: relative;
-  background-color: #0094c8;
+  background-color: #274a78;
 }
 .Selector_Bar {
-  background-color: #eee;
+  background-color: #0094c8;
 }

@@ -7,11 +7,9 @@ import Info from '../container/editor/info';
 const EditorPage = () => (
   <div className="P-Editor">
     <Player />
+    <Info />
     <Timeline />
-    <div>
-      <Info />
-      <div>Action</div>
-    </div>
+    <div>Action</div>
   </div>
 );
 
