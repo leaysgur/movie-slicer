@@ -59,6 +59,10 @@ export default (state, { type, payload }) =>
         draft.ui.isSettingsShown = false;
         break;
       }
+      case 'UPDATE_SETTINGS': {
+        draft.settings[payload.prop] = payload.value;
+        break;
+      }
       default:
     }
   });

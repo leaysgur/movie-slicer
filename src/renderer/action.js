@@ -57,3 +57,8 @@ export const hideSettings = () => ({
   type: 'HIDE_SETTINGS',
   payload: null,
 });
+
+export const updateSettings = (prop, value) => ({
+  type: 'UPDATE_SETTINGS',
+  payload: { prop, value },
+});
