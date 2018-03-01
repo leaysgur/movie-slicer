@@ -51,6 +51,14 @@ export default (state, { type, payload }) =>
         draft.ui.isProgressShown = false;
         break;
       }
+      case 'SHOW_SETTINGS': {
+        draft.ui.isSettingsShown = true;
+        break;
+      }
+      case 'HIDE_SETTINGS': {
+        draft.ui.isSettingsShown = false;
+        break;
+      }
       default:
     }
   });

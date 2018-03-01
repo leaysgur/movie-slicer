@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Time } from '../../component/editor/formatter';
-import { showProgress } from '../../action';
+import { showProgress, showSettings } from '../../action';
 
 const InfoContainer = ({ movie, timeline, settings, dispatch }) => (
   <center>
@@ -11,7 +11,8 @@ const InfoContainer = ({ movie, timeline, settings, dispatch }) => (
     <br />
     Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
     <br />
-    <button>Settings</button>
+    <button onClick={() => dispatch(showSettings())}
+    >Settings</button>
     <button onClick={() => {
       dispatch(showProgress());
       ipcRenderer.send('cmd:ffmpeg', {

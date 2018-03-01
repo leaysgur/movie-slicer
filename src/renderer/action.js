@@ -47,3 +47,13 @@ export const hideProgress = () => ({
   type: 'HIDE_PROGRESS',
   payload: null,
 });
+
+export const showSettings = () => ({
+  type: 'SHOW_SETTINGS',
+  payload: null,
+});
+
+export const hideSettings = () => ({
+  type: 'HIDE_SETTINGS',
+  payload: null,
+});

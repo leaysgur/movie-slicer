@@ -1,21 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const PopupContainer = ({ isPopupShown, isProgressPopup }) =>
+const PopupContainer = ({ isPopupShown, isProgressPopup, isSettingsPopup }) =>
   isPopupShown ? (
     <div className="Popup">
       { isProgressPopup && (
         <div className="Popup_Inner">Progress</div>
       ) }
+      { isSettingsPopup && (
+        <div className="Popup_Inner">Settings</div>
+      ) }
     </div>
   ) : null;
 
 const mapStateToProps = state => ({
-  isPopupShown: state.ui.isProgressShown || false,
+  isPopupShown: state.ui.isProgressShown || state.ui.isSettingsShown,
   isProgressPopup: state.ui.isProgressShown,
-  progress: {
-    path: state.movie.path,
-  },
+  isSettingsPopup: state.ui.isSettingsShown,
 });
 
 export default connect(mapStateToProps)(PopupContainer);
