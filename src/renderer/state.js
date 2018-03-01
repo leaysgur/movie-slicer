@@ -14,10 +14,10 @@ export default {
     pxAs1Sec: 1, // = ui.zoomLvs[ui.zoomLv]
     selectStartSec: 0,
     selectingSec: 30,
-    minSelectingSec: 5,
-    maxSelectingSec: 140,
   },
   settings: {
+    minSelectingSec: 5,
+    maxSelectingSec: 140,
     frameRate: 40,
     preset: 'ultrafast',
     outputDir: '', // set in main.js

@@ -57,8 +57,8 @@ const mapStateToProps = state => ({
   timelineWidth: state.timeline.pxAs1Sec * state.movie.duration,
   selectStartX: state.timeline.pxAs1Sec * state.timeline.selectStartSec,
   selectorDefaultWidth: state.timeline.pxAs1Sec * state.timeline.selectingSec,
-  selectorMinWidth: state.timeline.pxAs1Sec * state.timeline.minSelectingSec,
-  selectorMaxWidth: state.timeline.pxAs1Sec * state.timeline.maxSelectingSec,
+  selectorMinWidth: state.timeline.pxAs1Sec * state.settings.minSelectingSec,
+  selectorMaxWidth: state.timeline.pxAs1Sec * state.settings.maxSelectingSec,
 });
 
 export default connect(mapStateToProps)(TimelineContainer);
