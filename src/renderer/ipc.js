@@ -5,7 +5,7 @@ export default function({ dispatch }) {
   ipcRenderer.on('cmd:ffmpeg:stderr', (_ev, arg) => {
     console.log('stderr');
     console.log(arg);
-    dispatch();
+    dispatch;
   });
   ipcRenderer.on('cmd:ffmpeg:err', (_ev, { cmd }) => {
     console.error('Err! check cmd below');

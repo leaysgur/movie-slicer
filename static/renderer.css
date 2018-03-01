@@ -9,6 +9,21 @@ body {
   display: grid;
   grid-template-rows: calc(100vh - 150px) 90px 60px;
 }
+.Popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, .8);
+}
+.Popup_Inner {
+  background-color: #fff;
+  width: 70vw;
+  margin: 20vh auto;
+  padding: 10px;
+}
 
 .Video {
   width: 100%;

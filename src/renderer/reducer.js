@@ -9,7 +9,8 @@ const initialState = {
     },
     zoomLv: 3,
     zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10],
-    isProgressShown: false,
+    // isProgressShown: false,
+    isProgressShown: true,
   },
   timeline: {
     pxAs1Sec: 1, // = ui.zoomLvs[ui.zoomLv]
