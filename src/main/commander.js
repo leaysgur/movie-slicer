@@ -1,20 +1,18 @@
-const path = require('path');
-
 function ffmpeg({
   startSec,
   input,
-  preset = 'ultrafast',
+  preset,
   time,
-  r = 40,
-  o,
+  frameRate,
+  outputDir,
 }) {
   // base
   let cmd = 'ffmpeg -hide_banner';
   // input
   cmd += ` -ss ${startSec} -i ${input}`;
   // output
-  const outPath = o || `${path.dirname(input)}/${startSec}-${startSec + time}.mp4`;
-  cmd += ` -preset ${preset} -t ${time} -r ${r} ${outPath}`;
+  const outPath = `${outputDir}/${startSec}-${startSec + time}.mp4`;
+  cmd += ` -preset ${preset} -t ${time} -r ${frameRate} ${outPath}`;
 
   return cmd;
 }

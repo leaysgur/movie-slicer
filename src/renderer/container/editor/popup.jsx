@@ -13,6 +13,9 @@ const PopupContainer = ({ isPopupShown, isProgressPopup }) =>
 const mapStateToProps = state => ({
   isPopupShown: state.ui.isProgressShown || false,
   isProgressPopup: state.ui.isProgressShown,
+  progress: {
+    path: state.movie.path,
+  },
 });
 
 export default connect(mapStateToProps)(PopupContainer);

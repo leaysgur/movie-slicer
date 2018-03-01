@@ -1,3 +1,6 @@
+import path from 'path';
+import { homedir } from 'os';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
@@ -6,10 +9,12 @@ import { Provider } from 'react-redux';
 import Root from './container/root';
 import reducer from './reducer';
 import listenIpc from './ipc';
+import initialState from './state';
 
 import { loadFile } from './action'; // TODO: debug
 
-const store = createStore(reducer);
+initialState.settings.outputDir = path.join(homedir(), 'Desktop');
+const store = createStore(reducer, initialState);
 listenIpc(store);
 
 // TODO: debug

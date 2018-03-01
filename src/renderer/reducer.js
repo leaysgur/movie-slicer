@@ -1,34 +1,6 @@
 import produce from 'immer';
 
-const initialState = {
-  ui: {
-    route: 'STANDBY',
-    routes: {
-      STANDBY: 'STANDBY',
-      EDITOR: 'EDITOR',
-    },
-    zoomLv: 3,
-    zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10],
-    // isProgressShown: false,
-    isProgressShown: true,
-  },
-  timeline: {
-    pxAs1Sec: 1, // = ui.zoomLvs[ui.zoomLv]
-    selectStartSec: 0,
-    selectingSec: 30,
-    minSelectingSec: 5,
-    maxSelectingSec: 140,
-  },
-  movie: {
-    path: '',
-    size: 0,
-    duration: 0,
-    currentTime: 0, // for manual update
-    currentTimeDisp: 0,
-  },
-};
-
-export default (state = initialState, { type, payload }) =>
+export default (state, { type, payload }) =>
   produce(state, draft => {
     switch (type) {
       case 'LOAD_FILE': {
