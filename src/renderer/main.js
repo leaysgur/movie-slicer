@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
@@ -6,18 +5,12 @@ import { Provider } from 'react-redux';
 
 import Root from './container/root';
 import reducer from './reducer';
+import listenIpc from './ipc';
 
 import { loadFile } from './action'; // TODO: debug
 
 const store = createStore(reducer);
-
-// TODO: fix
-ipcRenderer.on('ok', (_ev, arg) => {
-  console.log('ok', arg);
-});
-ipcRenderer.on('ng', (_ev, arg) => {
-  console.log('ng', arg);
-});
+listenIpc(store);
 
 // TODO: debug
 store.dispatch(loadFile({ path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4', size: 9999 }));

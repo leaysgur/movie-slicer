@@ -11,11 +11,11 @@ const InfoContainer = ({ movie, timeline }) => (
     Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
     <br />
     <button onClick={() => {
-      const outPath = '/Users/leader22/Desktop/res.mp4';
-      const cmd = `ffmpeg -ss ${timeline.selectStartSec} -i ${movie.path} -preset ultrafast -t ${timeline.selectingSec} -r 40 ${outPath}`;
-      console.log(cmd);
-      // TODO: fix
-      ipcRenderer.send('cmd', cmd);
+      ipcRenderer.send('cmd:ffmpeg', {
+        startSec: timeline.selectStartSec,
+        input: movie.path,
+        time: timeline.selectingSec,
+      });
     }}>Exec</button>
   </center>
 );
