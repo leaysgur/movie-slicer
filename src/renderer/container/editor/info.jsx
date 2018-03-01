@@ -10,6 +10,7 @@ const InfoContainer = ({ movie, timeline }) => (
     <br />
     Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
     <br />
+    <button>Settings</button>
     <button onClick={() => {
       ipcRenderer.send('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,
