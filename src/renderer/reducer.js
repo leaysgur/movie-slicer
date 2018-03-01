@@ -2,7 +2,11 @@ import produce from 'immer';
 
 const initialState = {
   ui: {
-    route: 'standby',
+    route: 'STANDBY',
+    routes: {
+      STANDBY: 'STANDBY',
+      EDITOR: 'EDITOR',
+    },
     zoomLv: 3,
     zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10]
   },
@@ -26,7 +30,7 @@ export default (state = initialState, { type, payload }) =>
   produce(state, draft => {
     switch (type) {
       case 'LOAD_FILE': {
-        draft.ui.route = 'editor';
+        draft.ui.route = draft.ui.routes.EDITOR;
         draft.movie.path = payload.path;
         draft.movie.size = payload.size;
         break;
