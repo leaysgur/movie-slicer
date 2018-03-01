@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Settings = ({ settings, onChangeSettings }) => (
+const Settings = ({ settings, onChangeSettings, onClickClose }) => (
   <div>
     <label>
       <span>Output dir</span>
@@ -29,7 +29,7 @@ const Settings = ({ settings, onChangeSettings }) => (
       />
     </label>
     <hr />
-    <button>OK</button>
+    <button onClick={() => onClickClose()}>OK</button>
   </div>
 );
 

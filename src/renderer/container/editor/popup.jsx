@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Popup from '../../component/editor/popup';
 import Settings from '../../component/editor/settings';
-import { updateSettings } from '../../action';
+import { updateSettings, hideSettings } from '../../action';
 
 const PopupContainer = ({
   isPopupShown,
@@ -22,6 +22,7 @@ const PopupContainer = ({
       <Settings
         settings={settings}
         onChangeSettings={(prop, value) => dispatch(updateSettings(prop, value))}
+        onClickClose={() => dispatch(hideSettings())}
       />
     ) }
   </Popup>
