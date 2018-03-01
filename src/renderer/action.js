@@ -37,3 +37,13 @@ export const zoomOut = () => ({
   type: 'ZOOM_OUT',
   payload: null,
 });
+
+export const showProgress = () => ({
+  type: 'SHOW_PROGRESS',
+  payload: null,
+});
+
+export const hideProgress = () => ({
+  type: 'HIDE_PROGRESS',
+  payload: null,
+});

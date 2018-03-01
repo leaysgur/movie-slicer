@@ -8,7 +8,8 @@ const initialState = {
       EDITOR: 'EDITOR',
     },
     zoomLv: 3,
-    zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10]
+    zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10],
+    isProgressShown: false,
   },
   timeline: {
     pxAs1Sec: 1, // = ui.zoomLvs[ui.zoomLv]
@@ -67,6 +68,14 @@ export default (state = initialState, { type, payload }) =>
       case 'ZOOM_OUT': {
         draft.ui.zoomLv = Math.max(draft.ui.zoomLv - 1, 0);
         draft.timeline.pxAs1Sec = draft.ui.zoomLvs[draft.ui.zoomLv];
+        break;
+      }
+      case 'SHOW_PROGRESS': {
+        draft.ui.isProgressShown = true;
+        break;
+      }
+      case 'HIDE_PROGRESS': {
+        draft.ui.isProgressShown = false;
         break;
       }
       default:
