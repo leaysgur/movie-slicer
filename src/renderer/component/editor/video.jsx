@@ -1,9 +1,12 @@
 import React from 'react';
+import { reaction } from 'mobx';
+import { observer } from 'mobx-react';
 
 class Video extends React.Component {
   constructor() {
     super();
     this._el = null;
+    this._disposer = null;
   }
 
   render() {
@@ -22,38 +25,27 @@ class Video extends React.Component {
     );
   }
 
-  shouldComponentUpdate(nextProps) {
-    // render only path changed(= for the first time)
-    // after that, just mutate properties
-    if (nextProps.movie.path === this.props.movie.path) {
-      return false;
-    }
-    return true;
+  componentDidMount() {
+    this._disposer = reaction(
+      () => this.props.movie.currentTime,
+      time => this._el.currentTime = time
+    );
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this._el) {
-      return;
-    }
-
-    const { currentTime } = nextProps.movie;
-    if (currentTime !== this.props.movie.currentTime) {
-      this._el.currentTime = currentTime;
-    }
+  componentWillUnmount() {
+    this._disposer();
   }
 
   _onClick() {
     this._el.paused ? this._el.play() : this._el.pause();
   }
-
   _onTimeUpdate(el) {
-    const { onTimeUpdate, startTime, endTime } = this.props;
-    onTimeUpdate(el);
+    const { onTimeUpdate, timeline } = this.props;
 
-    if (el.currentTime > endTime) {
-      el.currentTime = startTime;
+    onTimeUpdate(el);
+    if (el.currentTime > timeline.selectEndSec) {
+      el.currentTime = timeline.selectStartSec;
     }
   }
 }
 
-export default Video;
+export default observer(Video);

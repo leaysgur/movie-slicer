@@ -10,8 +10,7 @@ const PlayerContainer = ({
 }) => (
   <Video
     movie={movie}
-    startTime={timeline.selectStartSec}
-    endTime={timeline.selectEndSec}
+    timeline={timeline}
     onLoadedMetadata={el => event.editor.getVideoDuration(el)}
     onTimeUpdate={el => event.editor.getVideoCurrentTime(el)}
   />

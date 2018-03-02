@@ -17,8 +17,8 @@ event.setOutputDir(path.join(homedir(), 'Desktop'));
 
 // TODO: debug
 event.standby.loadFile({
-  // path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
-  path: '/Users/leader22/Desktop/out.mp4',
+  path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
+  // path: '/Users/leader22/Desktop/out.mp4',
   size: 9999
 });
 
