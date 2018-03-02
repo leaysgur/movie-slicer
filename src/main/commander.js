@@ -24,7 +24,7 @@ function ffprobe({
   // input
   cmd += ` -i ${input}`;
   // output
-  cmd += ' -show_streams -print_format json';
+  cmd += ' -show_streams -show_format -print_format json';
 
   return cmd;
 }

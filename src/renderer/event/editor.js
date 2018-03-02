@@ -53,7 +53,7 @@ class EditorEvent {
   }
 
   async startSlice() {
-    const { ui, timeline, movie, settings } = this._store;
+    const { ui, timeline, probe, settings } = this._store;
     ui.isProgressShown = true;
 
     const outputName = `${timeline.selectStartSec}-${timeline.selectStartSec + timeline.selectingSec}.mp4`;
@@ -62,7 +62,7 @@ class EditorEvent {
     try {
       await execCommand('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,
-        input: movie.path,
+        input: probe.before.format.filename,
         time: timeline.selectingSec,
         frameRate: settings.frameRate,
         preset: settings.preset,
@@ -86,7 +86,7 @@ class EditorEvent {
       return;
     }
 
-    console.log(probeInfo);
+    probe.after = probeInfo;
   }
 }
 
