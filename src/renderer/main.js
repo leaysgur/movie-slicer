@@ -8,7 +8,6 @@ import { Provider } from 'mobx-react';
 import Store from './store';
 import Event from './event';
 import Root from './container/root';
-// import listenIpc from './ipc';
 
 const store = new Store({
   settings: {
@@ -16,7 +15,6 @@ const store = new Store({
   },
 });
 const event = new Event(store);
-// listenIpc(store);
 
 // TODO: debug
 window.store = store;

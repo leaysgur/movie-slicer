@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import Rnd from 'react-rnd';
 
 class Selector extends React.Component {
@@ -11,15 +12,20 @@ class Selector extends React.Component {
 
   render() {
     const {
-      timelineWidth,
-      selectStartX,
-      selectorDefaultWidth,
-      selectorMinWidth,
-      selectorMaxWidth,
+      ui,
+      movie,
+      timeline,
+      settings,
       onDrag,
       onResizeLeft,
       onResizeRight,
     } = this.props;
+
+    const timelineWidth = ui.pxAs1Sec * movie.duration;
+    const selectStartX = ui.pxAs1Sec * timeline.selectStartSec;
+    const selectorDefaultWidth = ui.pxAs1Sec * timeline.selectingSec;
+    const selectorMinWidth = ui.pxAs1Sec * settings.minSelectingSec;
+    const selectorMaxWidth = ui.pxAs1Sec * settings.maxSelectingSec;
 
     return (
       <div
@@ -72,4 +78,4 @@ class Selector extends React.Component {
   }
 }
 
-export default Selector;
+export default observer(Selector);

@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const { exec } = require('child_process');
 
 const command = require('./commander');
-const exec = require('./executer');
 
 let win;
 module.exports = function(rootPath) {
@@ -20,7 +20,20 @@ module.exports = function(rootPath) {
 
   ipcMain.on('cmd:ffmpeg', ({ sender }, arg) => {
     const cmd = command.ffmpeg(arg);
-    exec('cmd:ffmpeg', cmd, sender);
+    exec(cmd, (err, stdout, stderr) => {
+      if (err) {
+        return sender.send('cmd:ffmpeg:result', {
+          type: 'err',
+          payload: err,
+        });
+      }
+
+      // ffmpeg puts logs to stderr...
+      return sender.send('cmd:ffmpeg:result', {
+        type: 'ok',
+        payload: stderr || stdout,
+      });
+    });
   });
 
   function createWindow() {

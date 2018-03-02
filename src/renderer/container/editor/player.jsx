@@ -1,5 +1,5 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import { inject } from 'mobx-react';
 
 import Video from '../../component/editor/video';
 
@@ -16,4 +16,4 @@ const PlayerContainer = ({
   />
 );
 
-export default inject('movie', 'timeline', 'event')(observer(PlayerContainer));
+export default inject('movie', 'timeline', 'event')(PlayerContainer);

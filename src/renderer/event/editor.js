@@ -1,3 +1,5 @@
+import { ipcRenderer } from 'electron';
+
 class EditorEvent {
   constructor(store) {
     this._store = store;
@@ -41,10 +43,6 @@ class EditorEvent {
     timeline.updateSelectingSec(rPercentage);
   }
 
-  showProgress(bool) {
-    const { ui } = this._store;
-    ui.isProgressShown = bool;
-  }
   showSettings(bool) {
     const { ui } = this._store;
     ui.isSettingsShown = bool;
@@ -52,6 +50,30 @@ class EditorEvent {
   updateSettings(prop, value) {
     const { settings } = this._store;
     settings[prop] = value;
+  }
+
+  startSlice() {
+    const { ui, timeline, movie, settings } = this._store;
+    ui.isProgressShown = true;
+
+    ipcRenderer.once('cmd:ffmpeg:result', (_ev, { type, payload }) => {
+      if (type === 'err') {
+        console.error('Err! check cmd below');
+        console.error(payload.cmd);
+        return;
+      }
+      // used as success
+      console.log(payload);
+    });
+
+    ipcRenderer.send('cmd:ffmpeg', {
+      startSec: timeline.selectStartSec,
+      input: movie.path,
+      time: timeline.selectingSec,
+      frameRate: settings.frameRate,
+      outputDir: settings.outputDir,
+      preset: settings.preset,
+    });
   }
 }
 
