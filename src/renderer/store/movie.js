@@ -7,7 +7,7 @@ class MovieStore {
       size: 0,
       duration: 0,
       currentTime: 0, // for manual update
-      currentTimeDisp: 0,
+      currentTimeDisp: 0, // sync by video
     });
   }
 
