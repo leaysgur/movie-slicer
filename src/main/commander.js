@@ -4,19 +4,32 @@ function ffmpeg({
   preset,
   time,
   frameRate,
-  outputDir,
+  output,
 }) {
   // base
-  let cmd = 'ffmpeg -hide_banner';
+  let cmd = 'ffmpeg -loglevel error';
   // input
   cmd += ` -ss ${startSec} -i ${input}`;
   // output
-  const outPath = `${outputDir}/${startSec}-${startSec + time}.mp4`;
-  cmd += ` -preset ${preset} -t ${time} -r ${frameRate} ${outPath}`;
+  cmd += ` -preset ${preset} -t ${time} -r ${frameRate} ${output}`;
+
+  return cmd;
+}
+
+function ffprobe({
+  input,
+}) {
+  // base
+  let cmd = 'ffprobe -loglevel error';
+  // input
+  cmd += ` -i ${input}`;
+  // output
+  cmd += ' -show_streams -print_format json';
 
   return cmd;
 }
 
 module.exports = {
   ffmpeg,
+  ffprobe,
 };

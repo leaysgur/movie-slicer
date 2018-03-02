@@ -56,21 +56,37 @@ class EditorEvent {
     const { ui, timeline, movie, settings } = this._store;
     ui.isProgressShown = true;
 
+    const outputName = `${timeline.selectStartSec}-${timeline.selectStartSec + timeline.selectingSec}.mp4`;
+    const output = `${settings.outputDir}/${outputName}`;
+
     try {
       await execCommand('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,
         input: movie.path,
         time: timeline.selectingSec,
         frameRate: settings.frameRate,
-        outputDir: settings.outputDir,
         preset: settings.preset,
+        output,
       });
     } catch(err) {
       console.error('Err! check cmd below');
       console.error(err.cmd);
+      return;
     }
 
-    ui.isProgressShown = false;
+    let probeInfo;
+    try {
+      const probeRes = await execCommand('cmd:ffprobe', {
+        input: output,
+      });
+      probeInfo = JSON.parse(probeRes);
+    } catch(err) {
+      console.error('Err! check cmd below');
+      console.error(err.cmd);
+      return;
+    }
+
+    console.log(probeInfo);
   }
 }
 

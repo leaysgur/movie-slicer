@@ -35,6 +35,23 @@ module.exports = function(rootPath) {
       });
     });
   });
+  ipcMain.on('cmd:ffprobe', ({ sender }, arg) => {
+    const cmd = command.ffprobe(arg);
+    exec(cmd, (err, stdout, stderr) => {
+      if (err) {
+        return sender.send('cmd:ffprobe:result', {
+          type: 'err',
+          payload: err,
+        });
+      }
+
+      // ffmpeg puts logs to stderr...
+      return sender.send('cmd:ffprobe:result', {
+        type: 'ok',
+        payload: stderr || stdout,
+      });
+    });
+  });
 
   function createWindow() {
     win = new BrowserWindow();
