@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron';
+import { execCommand } from '../util/ipc';
 
 class EditorEvent {
   constructor(store) {
@@ -52,28 +52,25 @@ class EditorEvent {
     settings[prop] = value;
   }
 
-  startSlice() {
+  async startSlice() {
     const { ui, timeline, movie, settings } = this._store;
     ui.isProgressShown = true;
 
-    ipcRenderer.once('cmd:ffmpeg:result', (_ev, { type, payload }) => {
-      if (type === 'err') {
-        console.error('Err! check cmd below');
-        console.error(payload.cmd);
-        return;
-      }
-      // used as success
-      console.log(payload);
-    });
+    try {
+      await execCommand('cmd:ffmpeg', {
+        startSec: timeline.selectStartSec,
+        input: movie.path,
+        time: timeline.selectingSec,
+        frameRate: settings.frameRate,
+        outputDir: settings.outputDir,
+        preset: settings.preset,
+      });
+    } catch(err) {
+      console.error('Err! check cmd below');
+      console.error(err.cmd);
+    }
 
-    ipcRenderer.send('cmd:ffmpeg', {
-      startSec: timeline.selectStartSec,
-      input: movie.path,
-      time: timeline.selectingSec,
-      frameRate: settings.frameRate,
-      outputDir: settings.outputDir,
-      preset: settings.preset,
-    });
+    ui.isProgressShown = false;
   }
 }
 
