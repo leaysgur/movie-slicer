@@ -1,31 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject, observer } from 'mobx-react';
 
 import Video from '../../component/editor/video';
-import {
-  getVideoDuration,
-  getVideoCurrentTime,
-} from '../../action';
 
 const PlayerContainer = ({
   movie,
-  startTime,
-  endTime,
-  dispatch,
+  timeline,
+  event,
 }) => (
   <Video
     movie={movie}
-    startTime={startTime}
-    endTime={endTime}
-    onLoadedMetadata={el => dispatch(getVideoDuration(el))}
-    onTimeUpdate={el => dispatch(getVideoCurrentTime(el))}
+    startTime={timeline.selectStartSec}
+    endTime={timeline.selectEndSec}
+    onLoadedMetadata={el => event.editor.getVideoDuration(el)}
+    onTimeUpdate={el => event.editor.getVideoCurrentTime(el)}
   />
 );
 
-const mapStateToProps = state => ({
-  movie: state.movie,
-  startTime: state.timeline.selectStartSec,
-  endTime: state.timeline.selectStartSec + state.timeline.selectingSec,
-});
-
-export default connect(mapStateToProps)(PlayerContainer);
+export default inject('movie', 'timeline', 'event')(observer(PlayerContainer));

@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject } from 'mobx-react';
 
-import { loadFile } from '../../action';
-
-const DropperContainer = ({ dispatch }) => (
-  <input type="file" onChange={ev => dispatch(loadFile(ev.target.files[0]))} />
+const DropperContainer = ({ event }) => (
+  <input type="file" onChange={ev => event.standby.loadFile(ev.target.files[0])} />
 );
 
-export default connect()(DropperContainer);
+export default inject('event')(DropperContainer);

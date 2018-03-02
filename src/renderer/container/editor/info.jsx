@@ -1,20 +1,20 @@
 import { ipcRenderer } from 'electron';
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject, observer } from 'mobx-react';
 
 import { Time } from '../../component/editor/formatter';
-import { showProgress, showSettings } from '../../action';
 
-const InfoContainer = ({ movie, timeline, settings, dispatch }) => (
+const InfoContainer = ({ movie, timeline, settings, event }) => (
   <center>
     Playing: <Time sec={movie.currentTimeDisp} /> / <Time sec={movie.duration} />
     <br />
     Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
     <br />
-    <button onClick={() => dispatch(showSettings())}
+    <button onClick={() => event.editor.showSettings()}
     >Settings</button>
     <button onClick={() => {
-      dispatch(showProgress());
+      event.editor.showProgress();
+      // TODO: move to event
       ipcRenderer.send('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,
         input: movie.path,
@@ -27,10 +27,4 @@ const InfoContainer = ({ movie, timeline, settings, dispatch }) => (
   </center>
 );
 
-const mapStateToProps = state => ({
-  movie: state.movie,
-  timeline: state.timeline,
-  settings: state.settings,
-});
-
-export default connect(mapStateToProps)(InfoContainer);
+export default inject('event', 'timeline', 'movie', 'settings')(observer(InfoContainer));

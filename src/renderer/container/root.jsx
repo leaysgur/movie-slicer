@@ -1,23 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject, observer } from 'mobx-react';
 
 import StandbyPage from '../page/standby';
 import EditorPage from '../page/editor';
 
-const RootContainer = ({ route, routes }) => {
-  if (route === routes.STANDBY) {
+const RootContainer = ({ ui }) => {
+  if (ui.route === ui.routes.STANDBY) {
     return <StandbyPage />;
   }
-  if (route === routes.EDITOR) {
+  if (ui.route === ui.routes.EDITOR) {
     return <EditorPage />;
   }
 
   return <div>404</div>;
 };
 
-const mapStateToProps = state => ({
-  route: state.ui.route,
-  routes: state.ui.routes,
-});
-
-export default connect(mapStateToProps)(RootContainer);
+export default inject('ui')(observer(RootContainer));

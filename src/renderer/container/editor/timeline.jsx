@@ -1,64 +1,45 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject, observer } from 'mobx-react';
 
 import Timeline from '../../component/editor/timeline';
 import Selector from '../../component/editor/selector';
 
-import {
-  setVideoCurrentTime,
-  setSelectStartSec,
-  setSelectEndSec,
-  zoomIn,
-  zoomOut,
-} from '../../action';
-
 const TimelineContainer = ({
-  timelineWidth,
-  selectStartX,
-  selectorDefaultWidth,
-  selectorMinWidth,
-  selectorMaxWidth,
-  dispatch,
+  timeline,
+  movie,
+  ui,
+  settings,
+  event,
 }) => (
   <Timeline
-    onClickZoomIn={() => dispatch(zoomIn())}
-    onClickZoomOut={() => dispatch(zoomOut())}
+    onClickZoomIn={() => event.editor.zoomIn()}
+    onClickZoomOut={() => event.editor.zoomOut()}
   >
     <Selector
-      {...{
-        timelineWidth,
-        selectStartX,
-        selectorDefaultWidth,
-        selectorMinWidth,
-        selectorMaxWidth,
-        onClickSelector(percentage) {
-          dispatch(setVideoCurrentTime(percentage));
-          dispatch(setSelectStartSec(percentage));
-        },
-        onDrag(percentage) {
-          dispatch(setVideoCurrentTime(percentage));
-          dispatch(setSelectStartSec(percentage));
-        },
-        onResizeLeft(lPercentage, rPercentage) {
-          dispatch(setVideoCurrentTime(lPercentage));
-          dispatch(setSelectStartSec(lPercentage));
-          dispatch(setSelectEndSec(rPercentage));
-        },
-        onResizeRight(rPercentage) {
-          dispatch(setVideoCurrentTime(rPercentage));
-          dispatch(setSelectEndSec(rPercentage));
-        },
+      timelineWidth={ui.pxAs1Sec * movie.duration}
+      selectStartX={ui.pxAs1Sec * timeline.selectStartSec}
+      selectorDefaultWidth={ui.pxAs1Sec * timeline.selectingSec}
+      selectorMinWidth={ui.pxAs1Sec * settings.minSelectingSec}
+      selectorMaxWidth={ui.pxAs1Sec * settings.maxSelectingSec}
+      onClickSelector={percentage => {
+        event.editor.setVideoCurrentTime(percentage);
+        event.editor.setSelectStartSec(percentage);
+      }}
+      onDrag={percentage => {
+        event.editor.setVideoCurrentTime(percentage);
+        event.editor.setSelectStartSec(percentage);
+      }}
+      onResizeLeft={(lPercentage, rPercentage) => {
+        event.editor.setVideoCurrentTime(lPercentage);
+        event.editor.setSelectStartSec(lPercentage);
+        event.editor.setSelectEndSec(rPercentage);
+      }}
+      onResizeRight={rPercentage => {
+        event.editor.setVideoCurrentTime(rPercentage);
+        event.editor.setSelectEndSec(rPercentage);
       }}
     />
   </Timeline>
 );
 
-const mapStateToProps = state => ({
-  timelineWidth: state.timeline.pxAs1Sec * state.movie.duration,
-  selectStartX: state.timeline.pxAs1Sec * state.timeline.selectStartSec,
-  selectorDefaultWidth: state.timeline.pxAs1Sec * state.timeline.selectingSec,
-  selectorMinWidth: state.timeline.pxAs1Sec * state.settings.minSelectingSec,
-  selectorMaxWidth: state.timeline.pxAs1Sec * state.settings.maxSelectingSec,
-});
-
-export default connect(mapStateToProps)(TimelineContainer);
+export default inject('event', 'timeline', 'movie', 'settings', 'ui')(observer(TimelineContainer));

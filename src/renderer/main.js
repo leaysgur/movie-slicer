@@ -3,27 +3,31 @@ import { homedir } from 'os';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 
+import Store from './store';
+import Event from './event';
 import Root from './container/root';
-import reducer from './reducer';
-import listenIpc from './ipc';
-import initialState from './state';
+// import listenIpc from './ipc';
 
-import { loadFile } from './action'; // TODO: debug
-
-initialState.settings.outputDir = path.join(homedir(), 'Desktop');
-const store = createStore(reducer, initialState);
-listenIpc(store);
+const store = new Store();
+const event = new Event(store);
+// listenIpc(store);
+event.setOutputDir(path.join(homedir(), 'Desktop'));
 
 // TODO: debug
-store.dispatch(loadFile({ path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4', size: 9999 }));
-// store.dispatch(loadFile({ path: '/Users/leader22/Desktop/out.mp4', size: 9999 }));
+event.standby.loadFile({
+  // path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
+  path: '/Users/leader22/Desktop/out.mp4',
+  size: 9999
+});
 
 window.addEventListener('load', () => {
   ReactDOM.render(
-    <Provider store={store}>
+    <Provider
+      {...store}
+      event={event}
+    >
       <Root />
     </Provider>,
     document.getElementById('app')

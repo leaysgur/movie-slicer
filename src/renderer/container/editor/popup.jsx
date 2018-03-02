@@ -1,38 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { inject, observer } from 'mobx-react';
 
 import Popup from '../../component/editor/popup';
 import Settings from '../../component/editor/settings';
-import { updateSettings, hideSettings } from '../../action';
 
 const PopupContainer = ({
-  isPopupShown,
-  isProgressPopup,
-  isSettingsPopup,
+  ui,
   settings,
-  dispatch,
+  event,
 }) => (
   <Popup
-    isShown={isPopupShown}
+    isShown={ui.isPopupShown}
   >
-    { isProgressPopup && (
+    { ui.isProgressPopup && (
       <div>Progress</div>
     ) }
-    { isSettingsPopup && (
+    { ui.isSettingsPopup && (
       <Settings
         settings={settings}
-        onChangeSettings={(prop, value) => dispatch(updateSettings(prop, value))}
-        onClickClose={() => dispatch(hideSettings())}
+        onChangeSettings={(prop, value) => event.editor.updateSettings(prop, value)}
+        onClickClose={() => event.editor.hideSettings()}
       />
     ) }
   </Popup>
 );
 
-const mapStateToProps = state => ({
-  isPopupShown: state.ui.isProgressShown || state.ui.isSettingsShown,
-  isProgressPopup: state.ui.isProgressShown,
-  isSettingsPopup: state.ui.isSettingsShown,
-  settings: state.settings,
-});
-
-export default connect(mapStateToProps)(PopupContainer);
+export default inject('settings', 'ui', 'event')(observer(PopupContainer));
