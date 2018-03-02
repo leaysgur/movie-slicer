@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 const Settings = ({ settings, onChangeSettings, onClickClose }) => (
   <div>
@@ -58,4 +59,4 @@ const Settings = ({ settings, onChangeSettings, onClickClose }) => (
   </div>
 );
 
-export default Settings;
+export default observer(Settings);

@@ -16,7 +16,6 @@ class Selector extends React.Component {
       selectorDefaultWidth,
       selectorMinWidth,
       selectorMaxWidth,
-      onClickSelector,
       onDrag,
       onResizeLeft,
       onResizeRight,
@@ -32,7 +31,8 @@ class Selector extends React.Component {
           }
           // parent is scrollable
           const x = ev.target.parentNode.scrollLeft + ev.clientX;
-          onClickSelector(x / timelineWidth);
+          // same as drag it
+          onDrag(x / timelineWidth);
         }}
       >
         <Rnd

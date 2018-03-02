@@ -21,23 +21,13 @@ const TimelineContainer = ({
       selectorDefaultWidth={ui.pxAs1Sec * timeline.selectingSec}
       selectorMinWidth={ui.pxAs1Sec * settings.minSelectingSec}
       selectorMaxWidth={ui.pxAs1Sec * settings.maxSelectingSec}
-      onClickSelector={percentage => {
-        event.editor.setVideoCurrentTime(percentage);
-        event.editor.setSelectStartSec(percentage);
-      }}
-      onDrag={percentage => {
-        event.editor.setVideoCurrentTime(percentage);
-        event.editor.setSelectStartSec(percentage);
-      }}
-      onResizeLeft={(lPercentage, rPercentage) => {
-        event.editor.setVideoCurrentTime(lPercentage);
-        event.editor.setSelectStartSec(lPercentage);
-        event.editor.setSelectEndSec(rPercentage);
-      }}
-      onResizeRight={rPercentage => {
-        event.editor.setVideoCurrentTime(rPercentage);
-        event.editor.setSelectEndSec(rPercentage);
-      }}
+      onDrag={percentage => event.editor.dragSelector(percentage)}
+      onResizeLeft={(lPercentage, rPercentage) =>
+        event.editor.resizeSelectorByLeft(lPercentage, rPercentage)
+      }
+      onResizeRight={rPercentage =>
+        event.editor.resizeSelectorByRight(rPercentage)
+      }
     />
   </Timeline>
 );

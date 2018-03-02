@@ -8,10 +8,6 @@ class Event {
     this.standby = new StandbyEvent(store);
     this.editor = new EditorEvent(store);
   }
-
-  setOutputDir(path) {
-    this._store.settings.outputDir = path;
-  }
 }
 
 export default Event;

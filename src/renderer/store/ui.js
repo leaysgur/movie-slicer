@@ -23,6 +23,13 @@ class UiStore {
       },
     });
   }
+
+  zoomIn() {
+    this.zoomLv = Math.min(this.zoomLv + 1, this.zoomLvs.length - 1);
+  }
+  zoomOut() {
+    this.zoomLv = Math.max(this.zoomLv - 1, 0);
+  }
 }
 
 export default UiStore;

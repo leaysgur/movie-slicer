@@ -12,14 +12,14 @@ const PopupContainer = ({
   <Popup
     isShown={ui.isPopupShown}
   >
-    { ui.isProgressPopup && (
+    { ui.isProgressShown && (
       <div>Progress</div>
     ) }
-    { ui.isSettingsPopup && (
+    { ui.isSettingsShown && (
       <Settings
         settings={settings}
         onChangeSettings={(prop, value) => event.editor.updateSettings(prop, value)}
-        onClickClose={() => event.editor.hideSettings()}
+        onClickClose={() => event.editor.showSettings(false)}
       />
     ) }
   </Popup>

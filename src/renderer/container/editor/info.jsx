@@ -10,10 +10,10 @@ const InfoContainer = ({ movie, timeline, settings, event }) => (
     <br />
     Selecting: <Time sec={timeline.selectStartSec} /> - <Time sec={timeline.selectStartSec + timeline.selectingSec} />({timeline.selectingSec}sec)
     <br />
-    <button onClick={() => event.editor.showSettings()}
+    <button onClick={() => event.editor.showSettings(true)}
     >Settings</button>
     <button onClick={() => {
-      event.editor.showProgress();
+      event.editor.showProgress(true);
       // TODO: move to event
       ipcRenderer.send('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,

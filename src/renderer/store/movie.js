@@ -10,6 +10,12 @@ class MovieStore {
       currentTimeDisp: 0,
     });
   }
+
+  updateCurrentTime(percentage) {
+    const currentTime = Math.max(0, this.duration * percentage);
+    this.currentTime = currentTime;
+    this.currentTimeDisp = currentTime;
+  }
 }
 
 export default MovieStore;

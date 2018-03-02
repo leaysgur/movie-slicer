@@ -4,8 +4,11 @@ class EditorEvent {
   }
 
   getVideoDuration(el) {
-    const { movie } = this._store;
+    const { movie, timeline } = this._store;
+    // for display
     movie.duration = el.duration;
+    // for calculation
+    timeline.totalSec = el.duration;
   }
   getVideoCurrentTime(el) {
     const { movie } = this._store;
@@ -14,45 +17,37 @@ class EditorEvent {
 
   zoomIn() {
     const { ui } = this._store;
-    ui.zoomLv = Math.min(ui.zoomLv + 1, ui.zoomLvs.length - 1);
+    ui.zoomIn();
   }
   zoomOut() {
     const { ui } = this._store;
-    ui.zoomLv = Math.max(ui.zoomLv - 1, 0);
+    ui.zoomOut();
   }
 
-  setVideoCurrentTime(percentage) {
-    const { movie } = this._store;
-    const currentTime = Math.max(0, movie.duration * percentage);
-    movie.currentTime = currentTime;
-    movie.currentTimeDisp = currentTime;
-  }
-  setSelectStartSec(percentage) {
+  dragSelector(percentage) {
     const { movie, timeline } = this._store;
-    const startTime = Math.max(0, movie.duration * percentage);
-    timeline.selectStartSec = startTime;
+    movie.updateCurrentTime(percentage);
+    timeline.updateSelectStartSec(percentage);
   }
-  setSelectEndSec(percentage) {
+  resizeSelectorByLeft(lPercentage, rPercentage) {
     const { movie, timeline } = this._store;
-    const endTime = Math.max(0, movie.duration * percentage);
-    timeline.selectingSec = (endTime - timeline.selectStartSec)|0;
+    movie.updateCurrentTime(lPercentage);
+    timeline.updateSelectStartSec(lPercentage);
+    timeline.updateSelectingSec(rPercentage);
+  }
+  resizeSelectorByRight(rPercentage) {
+    const { movie, timeline } = this._store;
+    movie.updateCurrentTime(rPercentage);
+    timeline.updateSelectingSec(rPercentage);
   }
 
-  showProgress() {
+  showProgress(bool) {
     const { ui } = this._store;
-    ui.isProgressShown = true;
+    ui.isProgressShown = bool;
   }
-  hideProgress() {
+  showSettings(bool) {
     const { ui } = this._store;
-    ui.isProgressShown = false;
-  }
-  showSettings() {
-    const { ui } = this._store;
-    ui.isSettingsShown = true;
-  }
-  hideSettings() {
-    const { ui } = this._store;
-    ui.isSettingsShown = false;
+    ui.isSettingsShown = bool;
   }
   updateSettings(prop, value) {
     const { settings } = this._store;

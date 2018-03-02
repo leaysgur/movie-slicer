@@ -10,12 +10,17 @@ import Event from './event';
 import Root from './container/root';
 // import listenIpc from './ipc';
 
-const store = new Store();
+const store = new Store({
+  settings: {
+    outputDir: path.join(homedir(), 'Desktop'),
+  },
+});
 const event = new Event(store);
 // listenIpc(store);
-event.setOutputDir(path.join(homedir(), 'Desktop'));
 
 // TODO: debug
+window.store = store;
+window.event = event;
 event.standby.loadFile({
   path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
   // path: '/Users/leader22/Desktop/out.mp4',
