@@ -3,9 +3,11 @@ import { inject, observer } from 'mobx-react';
 
 import Popup from '../../component/editor/popup';
 import Settings from '../../component/editor/settings';
+import Progress from '../../component/editor/progress';
 
 const PopupContainer = ({
   ui,
+  movie,
   settings,
   event,
 }) => (
@@ -13,7 +15,9 @@ const PopupContainer = ({
     isShown={ui.isPopupShown}
   >
     { ui.isProgressShown && (
-      <div>Progress</div>
+      <Progress
+        movie={movie}
+      />
     ) }
     { ui.isSettingsShown && (
       <Settings
@@ -25,4 +29,4 @@ const PopupContainer = ({
   </Popup>
 );
 
-export default inject('settings', 'ui', 'event')(observer(PopupContainer));
+export default inject('settings', 'ui', 'movie', 'event')(observer(PopupContainer));
