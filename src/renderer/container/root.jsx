@@ -7,14 +7,14 @@ import Timeline from './timeline';
 import Info from './info';
 import Popup from './popup';
 
-const RootContainer = ({ ui, event }) => (
+const RootContainer = ({ movie, event }) => (
   <Dropzone
     className="L-Root"
+    disableClick
     accept="video/*"
     onDropAccepted={files => event.loadFile(files[0])}
-    onDropRejected={() => console.log('NO')}
   >
-    { ui.route === ui.routes.EDITOR ? (
+    { movie.hasBfFile ? (
       <React.Fragment>
         <div className="L-Editor">
           <Player />
@@ -24,9 +24,11 @@ const RootContainer = ({ ui, event }) => (
         <Popup />
       </React.Fragment>
     ) : (
-      <div>drop here</div>
+      <div className="L-Dropper">
+        Drop your video here!
+      </div>
     ) }
   </Dropzone>
 );
 
-export default inject('ui', 'event')(observer(RootContainer));
+export default inject('movie', 'event')(observer(RootContainer));

@@ -7,7 +7,7 @@ class Event {
   }
 
   async loadFile(file) {
-    const { ui, movie, timeline } = this._store;
+    const { movie, timeline } = this._store;
 
     let probeInfo;
     try {
@@ -23,7 +23,11 @@ class Event {
 
     movie.bfProbe = probeInfo;
     timeline.totalSec = movie.duration;
-    ui.route = ui.routes.EDITOR;
+  }
+
+  clearFile() {
+    const { movie } = this._store;
+    movie.bfProbe = {};
   }
 
   getVideoCurrentTime(el) {

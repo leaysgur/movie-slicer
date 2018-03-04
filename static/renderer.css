@@ -11,6 +11,12 @@ body {
   display: grid;
   grid-template-rows: calc(100vh - 150px) 90px 60px;
 }
+.L-Dropper {
+  padding-top: 40vh;
+  text-align: center;
+  font-size: 2rem;
+}
+
 .Popup {
   position: absolute;
   top: 0;
