@@ -17,8 +17,8 @@ class SelectorThumb extends React.Component {
 
   componentDidMount() {
     this._disposer = reaction(
-      () => this.props.ui.pxAs1Sec,
-      () => this._loadThumb(),
+      () => [this.props.ui.pxAs1Sec, this.props.movie.bfPath],
+      () => this._render(),
       true
     );
   }
@@ -26,17 +26,16 @@ class SelectorThumb extends React.Component {
     this._disposer();
   }
 
-  _loadThumb() {
-    if (!this._el) {
-      return;
-    }
+  _render() {
 
     const $el = this._el;
-    const thumbHeight = parseInt(getComputedStyle($el).height);
     $el.innerHTML = '';
+    const thumbHeight = parseInt(getComputedStyle($el).height);
 
     const { ui, movie } = this.props;
     const timelineWidth = ui.pxAs1Sec * movie.duration;
+    // mark as id
+    const curSeqId = `${movie.bfPath}x${ui.pxAs1Sec}`;
 
     const $video = document.createElement('video');
     $video.muted = true;
@@ -48,15 +47,20 @@ class SelectorThumb extends React.Component {
     appendThumb(0);
     function appendThumb(i) {
       $video.addEventListener('canplay', () => {
+        const seqId = `${movie.bfPath}x${ui.pxAs1Sec}`;
+        // and ignore delayed calls
+        if (seqId !== curSeqId) {
+          return;
+        }
+
         const $canvas = document.createElement('canvas');
         $canvas.height = thumbHeight;
         $canvas.width = thumbHeight / $video.videoHeight * $video.videoWidth;
-
         $canvas.getContext('2d').drawImage($video, 0, 0, $canvas.width, $canvas.height);
         $el.appendChild($canvas);
-        i++;
 
-        const numOfThumb = Math.ceil(timelineWidth / $canvas.width);
+        i++;
+        const numOfThumb = timelineWidth / $canvas.width;
         secPerThumb = movie.duration / numOfThumb;
         if (i < numOfThumb) {
           appendThumb(i);
