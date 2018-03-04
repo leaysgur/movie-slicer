@@ -10,7 +10,7 @@ class Video extends React.Component {
   }
 
   render() {
-    const { movie, onLoadedMetadata } = this.props;
+    const { movie } = this.props;
     return (
       <video
         ref={el => this._el = el}
@@ -18,7 +18,6 @@ class Video extends React.Component {
         src={movie.path}
         autoPlay
         muted
-        onLoadedMetadata={ev => onLoadedMetadata(ev.target)}
         onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
         onClick={() => this._onClick()}
       ></video>

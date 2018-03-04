@@ -11,7 +11,6 @@ const PlayerContainer = ({
   <Video
     movie={movie}
     timeline={timeline}
-    onLoadedMetadata={el => event.editor.getVideoDuration(el)}
     onTimeUpdate={el => event.editor.getVideoCurrentTime(el)}
   />
 );

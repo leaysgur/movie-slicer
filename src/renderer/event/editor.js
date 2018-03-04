@@ -5,13 +5,6 @@ class EditorEvent {
     this._store = store;
   }
 
-  getVideoDuration(el) {
-    const { movie, timeline } = this._store;
-    // for display
-    movie.duration = el.duration;
-    // for calculation
-    timeline.totalSec = el.duration;
-  }
   getVideoCurrentTime(el) {
     const { movie } = this._store;
     movie.currentTimeDisp = el.currentTime;
@@ -53,7 +46,7 @@ class EditorEvent {
   }
 
   async startSlice() {
-    const { ui, timeline, probe, movie, settings } = this._store;
+    const { ui, timeline, movie, settings } = this._store;
     ui.isProgressShown = true;
 
     const outputName = `${timeline.selectStartSec}-${timeline.selectStartSec + timeline.selectingSec}.mp4`;
@@ -86,7 +79,7 @@ class EditorEvent {
       return;
     }
 
-    probe.after = probeInfo;
+    movie.afProbe = probeInfo;
   }
 }
 

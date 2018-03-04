@@ -6,7 +6,7 @@ class StandbyEvent {
   }
 
   async loadFile(file) {
-    const { ui, probe, movie } = this._store;
+    const { ui, movie, timeline } = this._store;
 
     let probeInfo;
     try {
@@ -20,8 +20,8 @@ class StandbyEvent {
       return;
     }
 
-    probe.before = probeInfo;
-    movie.path = file.path;
+    movie.bfProbe = probeInfo;
+    timeline.totalSec = movie.duration;
     ui.route = ui.routes.EDITOR;
   }
 }
