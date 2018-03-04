@@ -61,14 +61,14 @@ body {
   z-index: 0;
 }
 .Selector_Bar {
-  background-color: #0094c8;
+  background-color: rgba(255, 255, 255, .8);
   z-index: 2;
 }
 .Selector_Line {
   position: absolute;
   z-index: 3;
   height: 100%;
-  background-color: orange;
+  background-color: #0094c8;
   pointer-events: none;
 }
 .Selector_Thumb {

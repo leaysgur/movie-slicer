@@ -2,8 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 const SelectorLine = ({ movie, ui }) => {
-  const selectorLineWidth = Math.min(1, ui.pxAs1Sec);
-  const selectorLineLeft = (ui.pxAs1Sec * movie.currentTimeDisp) - selectorLineWidth / 2;
+  const selectorLineWidth = ui.pxAs1Sec;
+  const selectorLineLeft = ui.pxAs1Sec * movie.currentTimeDisp;
   return (
     <div
       className="Selector_Line"
