@@ -17,6 +17,7 @@ const PopupContainer = ({
     { ui.isProgressShown && (
       <Progress
         movie={movie}
+        onClickClose={() => event.showProgress(false)}
       />
     ) }
     { ui.isSettingsShown && (

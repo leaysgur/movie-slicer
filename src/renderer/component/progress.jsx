@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { InfoLabelColumn, InfoColumn } from './info';
 
-const Progress = ({ movie }) => (
+const Progress = ({ movie, onClickClose }) => (
   <div className="Progress">
     <div className="Progress_Col">
       <div>
@@ -27,6 +27,8 @@ const Progress = ({ movie }) => (
     <div>
       {movie.afInfo ? 'Done!' : 'Processing...'}
     </div>
+    <hr />
+    <button onClick={() => onClickClose()}>OK</button>
   </div>
 );
 

@@ -11,7 +11,10 @@ const InfoContainer = ({ movie, timeline, event }) => (
     <br />
     <button onClick={() => event.showSettings(true)}
     >Settings</button>
-    <button onClick={() => event.startSlice()}>Exec</button>
+    <button onClick={() => {
+      event.showProgress(true);
+      event.startSlice();
+    }}>Exec</button>
   </center>
 );
 

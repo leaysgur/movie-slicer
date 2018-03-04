@@ -70,9 +70,13 @@ class Event {
     settings[prop] = value;
   }
 
+  showProgress(bool) {
+    const { ui } = this._store;
+    ui.isProgressShown = bool;
+  }
+
   async startSlice() {
-    const { ui, timeline, movie, settings } = this._store;
-    ui.isProgressShown = true;
+    const { timeline, movie, settings } = this._store;
 
     const outputName = `${timeline.selectStartSec}-${timeline.selectStartSec + timeline.selectingSec}.mp4`;
     const output = `${settings.outputDir}/${outputName}`;
