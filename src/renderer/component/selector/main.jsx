@@ -8,6 +8,7 @@ import SelectorThumb from './thumb';
 class Selector extends React.Component {
   constructor() {
     super();
+    this._el = null;
     // XXX: stopPropagation does not work...
     this._isSelecting = false;
     this._timer = null;
@@ -33,13 +34,18 @@ class Selector extends React.Component {
     return (
       <div
         className="Selector"
+        ref={el => this._el = el}
         style={{ width: `${timelineWidth}px`, height: '100%', overflow: 'hidden' }}
         onClick={ev => {
           if (this._isSelecting) {
             return;
           }
+          if (ev.target !== this._el) {
+            return;
+          }
+
           // parent is scrollable
-          const x = ev.target.parentNode.scrollLeft + ev.clientX;
+          const x = this._el.parentNode.scrollLeft + ev.clientX;
           // same as drag it
           onDrag(x / timelineWidth);
         }}
