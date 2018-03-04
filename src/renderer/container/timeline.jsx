@@ -1,8 +1,8 @@
 import React from 'react';
 import { inject } from 'mobx-react';
 
-import Timeline from '../../component/editor/timeline';
-import Selector from '../../component/editor/selector';
+import Timeline from '../component/timeline';
+import Selector from '../component/selector';
 
 const TimelineContainer = ({
   timeline,
@@ -12,20 +12,20 @@ const TimelineContainer = ({
   event,
 }) => (
   <Timeline
-    onClickZoomIn={() => event.editor.zoomIn()}
-    onClickZoomOut={() => event.editor.zoomOut()}
+    onClickZoomIn={() => event.zoomIn()}
+    onClickZoomOut={() => event.zoomOut()}
   >
     <Selector
       ui={ui}
       movie={movie}
       timeline={timeline}
       settings={settings}
-      onDrag={percentage => event.editor.dragSelector(percentage)}
+      onDrag={percentage => event.dragSelector(percentage)}
       onResizeLeft={(lPercentage, rPercentage) =>
-        event.editor.resizeSelectorByLeft(lPercentage, rPercentage)
+        event.resizeSelectorByLeft(lPercentage, rPercentage)
       }
       onResizeRight={rPercentage =>
-        event.editor.resizeSelectorByRight(rPercentage)
+        event.resizeSelectorByRight(rPercentage)
       }
     />
   </Timeline>

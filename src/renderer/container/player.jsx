@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject } from 'mobx-react';
 
-import Video from '../../component/editor/video';
+import Video from '../component/video';
 
 const PlayerContainer = ({
   movie,
@@ -11,7 +11,7 @@ const PlayerContainer = ({
   <Video
     movie={movie}
     timeline={timeline}
-    onTimeUpdate={el => event.editor.getVideoCurrentTime(el)}
+    onTimeUpdate={el => event.getVideoCurrentTime(el)}
   />
 );
 
