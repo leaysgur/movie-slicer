@@ -22,9 +22,21 @@ function formatTime(sec) {
   return `${hh}:${mm}:${ss}`;
 }
 
-function formatByte(byte, unit) {
-  if (unit === 'M') {
-    return `${byte / 1000}M`;
+function formatByte(byte = 0, unit) {
+  let size;
+  switch (unit) {
+    case 'K':
+      size = byte / 1000;
+      break;
+    case 'M':
+      size = byte / 1000 / 1000;
+      break;
+    case 'G':
+      size = byte / 1000 / 1000 / 1000;
+      break;
+    default:
+      size = byte;
   }
-  return byte;
+
+  return `${size.toFixed(2)}${unit}`;
 }
