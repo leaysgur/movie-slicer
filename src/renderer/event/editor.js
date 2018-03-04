@@ -55,7 +55,7 @@ class EditorEvent {
     try {
       await execCommand('cmd:ffmpeg', {
         startSec: timeline.selectStartSec,
-        input: movie.path,
+        input: movie.bfPath,
         time: timeline.selectingSec,
         frameRate: settings.frameRate,
         preset: settings.preset,

@@ -7,7 +7,7 @@ class MovieStore {
       currentTimeDisp: 0, // sync by video
       bfProbe: observable.shallowObject({}),
       afProbe: observable.shallowObject({}),
-      get path() {
+      get bfPath() {
         return this.bfProbe.format.filename;
       },
       get duration() {

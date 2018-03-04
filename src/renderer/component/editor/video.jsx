@@ -15,7 +15,7 @@ class Video extends React.Component {
       <video
         ref={el => this._el = el}
         className="Video"
-        src={movie.path}
+        src={movie.bfPath}
         autoPlay
         muted
         onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
