@@ -1,4 +1,5 @@
 import { execCommand } from '../util/ipc';
+import { shell } from 'electron';
 
 class EditorEvent {
   constructor(store) {
@@ -80,6 +81,7 @@ class EditorEvent {
     }
 
     movie.afProbe = probeInfo;
+    shell.showItemInFolder(movie.afPath);
   }
 }
 

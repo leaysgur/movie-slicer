@@ -23,8 +23,9 @@ const Progress = ({ movie }) => (
         ) }
       </div>
     </div>
+    <hr />
     <div>
-      {movie.afInfo ? 'Done' : 'Processing...'}
+      {movie.afInfo ? 'Done!' : 'Processing...'}
     </div>
   </div>
 );

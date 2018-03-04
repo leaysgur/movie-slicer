@@ -10,6 +10,9 @@ class MovieStore {
       get bfPath() {
         return this.bfProbe.format.filename;
       },
+      get afPath() {
+        return this.afProbe.format.filename;
+      },
       get duration() {
         return this.bfProbe.format.duration;
       },
