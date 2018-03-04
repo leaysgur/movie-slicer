@@ -38,11 +38,14 @@ const Settings = ({ settings, onChangeSettings, onClickClose }) => (
     <label>
       <span>Preset</span>
       {': '}
-      <input
-        type="text"
-        value={settings.preset}
-        onChange={ev => onChangeSettings('preset', ev.target.value)}
-      />
+      <select
+        value={settings.selectedPreset}
+        onChange={ev => onChangeSettings('presetIdx', ev.target.value)}
+      >
+        { settings.presets.map((label, idx) => (
+          <option key={label} value={idx}>{label}</option>
+        )) }
+      </select>
     </label>
     <hr />
     <label>
