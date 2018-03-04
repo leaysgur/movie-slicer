@@ -24,6 +24,7 @@ const PopupContainer = ({
         settings={settings}
         onChangeSettings={(prop, value) => event.editor.updateSettings(prop, value)}
         onClickClose={() => event.editor.showSettings(false)}
+        onClickUrl={url => event.editor.openUrl(url)}
       />
     ) }
   </Popup>

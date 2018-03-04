@@ -83,6 +83,10 @@ class EditorEvent {
     movie.afProbe = probeInfo;
     shell.showItemInFolder(movie.afPath);
   }
+
+  openUrl(url) {
+    shell.openExternal(url);
+  }
 }
 
 export default EditorEvent;
