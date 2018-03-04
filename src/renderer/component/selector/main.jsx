@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import Rnd from 'react-rnd';
 
 import SelectorLine from './line';
+import SelectorThumb from './thumb';
 
 class Selector extends React.Component {
   constructor() {
@@ -43,6 +44,10 @@ class Selector extends React.Component {
           onDrag(x / timelineWidth);
         }}
       >
+        <SelectorThumb
+          movie={movie}
+          ui={ui}
+        />
         <SelectorLine
           movie={movie}
           ui={ui}

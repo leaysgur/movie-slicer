@@ -58,16 +58,27 @@ body {
 
 .Selector {
   position: relative;
-  background-color: #274a78;
+  z-index: 0;
 }
 .Selector_Bar {
   background-color: #0094c8;
+  z-index: 2;
 }
 .Selector_Line {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   height: 100%;
   background-color: orange;
+  pointer-events: none;
+}
+.Selector_Thumb {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  background-color: #000;
   pointer-events: none;
 }
 
