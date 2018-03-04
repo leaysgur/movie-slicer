@@ -1,5 +1,5 @@
 import { execCommand } from './util/ipc';
-import { shell } from 'electron';
+import { shell, remote } from 'electron';
 
 class Event {
   constructor(store) {
@@ -16,8 +16,8 @@ class Event {
       });
       probeInfo = JSON.parse(probeRes);
     } catch(err) {
-      console.error('Err! check cmd below');
-      console.error(err.cmd);
+      console.error(err);
+      remote.dialog.showErrorBox('Error', 'Open devtools for more detail.');
       return;
     }
 
@@ -91,8 +91,8 @@ class Event {
         output,
       });
     } catch(err) {
-      console.error('Err! check cmd below');
-      console.error(err.cmd);
+      console.error(err);
+      remote.dialog.showErrorBox('Error', 'Open devtools for more detail.');
       return;
     }
 
@@ -103,8 +103,8 @@ class Event {
       });
       probeInfo = JSON.parse(probeRes);
     } catch(err) {
-      console.error('Err! check cmd below');
-      console.error(err.cmd);
+      console.error(err);
+      remote.dialog.showErrorBox('Error', 'Open devtools for more detail.');
       return;
     }
 
