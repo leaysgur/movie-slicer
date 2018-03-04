@@ -27,7 +27,8 @@ class Video extends React.Component {
   componentDidMount() {
     this._disposer = reaction(
       () => this.props.movie.currentTime,
-      time => this._el.currentTime = time
+      time => this._el.currentTime = time,
+      true
     );
   }
   componentWillUnmount() {

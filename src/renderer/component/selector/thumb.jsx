@@ -19,7 +19,8 @@ class SelectorThumb extends React.Component {
     this._disposer = reaction(
       () => this.props.ui.pxAs1Sec,
       () => this._loadThumb(),
-    true);
+      true
+    );
   }
   componentWillUnmount() {
     this._disposer();
