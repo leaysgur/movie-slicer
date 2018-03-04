@@ -23,6 +23,9 @@ const Progress = ({ movie }) => (
         ) }
       </div>
     </div>
+    <div>
+      {movie.afInfo ? 'Done' : 'Processing...'}
+    </div>
   </div>
 );
 

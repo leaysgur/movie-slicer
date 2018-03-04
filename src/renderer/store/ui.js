@@ -13,7 +13,7 @@ class UiStore {
     extendObservable(this, {
       route: 'STANDBY',
       zoomLv: 3,
-      isProgressShown: true, // TODO: debug
+      isProgressShown: false,
       isSettingsShown: false,
       get pxAs1Sec() {
         return this.zoomLvs[this.zoomLv];
