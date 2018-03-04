@@ -19,10 +19,10 @@ const event = new Event(store);
 // TODO: debug
 window.store = store;
 window.event = event;
-// event.loadFile({
-//   path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
-//   // path: '/Users/leader22/Desktop/out.mp4',
-// });
+event.loadFile({
+  path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
+  // path: '/Users/leader22/Desktop/out.mp4',
+});
 
 window.addEventListener('load', () => {
   ReactDOM.render(

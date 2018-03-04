@@ -2,6 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import Rnd from 'react-rnd';
 
+import SelectorLine from './line';
+
 class Selector extends React.Component {
   constructor() {
     super();
@@ -41,6 +43,10 @@ class Selector extends React.Component {
           onDrag(x / timelineWidth);
         }}
       >
+        <SelectorLine
+          movie={movie}
+          ui={ui}
+        />
         <Rnd
           className="Selector_Bar"
           position={{ x: selectStartX, y: 0 }}
