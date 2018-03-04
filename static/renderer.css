@@ -1,5 +1,9 @@
 body {
   margin: 0;
+  background-color: #111;
+  color: #fff;
+  font-family: monospace;
+  font-size: 24px;
 }
 
 .L-Root {
@@ -47,7 +51,7 @@ body {
 .Timeline_Scroller {
   height: 100%;
   overflow-x: auto;
-  background-color: #eee;
+  background-color: #3C3C3C;
 }
 .Timeline_Controls {
   position: absolute;
@@ -85,4 +89,14 @@ body {
 .Progress_Col {
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
+}
+
+.Icon {
+  pointer-events: none;
+}
+.Icon.-x1 {
+  height: 24px;
+}
+.Icon.-x2 {
+  height: 48px;
 }

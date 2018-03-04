@@ -6,6 +6,7 @@ import Player from './player';
 import Timeline from './timeline';
 import Info from './info';
 import Popup from './popup';
+import Icon from '../component/icon';
 
 const RootContainer = ({ movie, event }) => (
   <Dropzone
@@ -25,7 +26,12 @@ const RootContainer = ({ movie, event }) => (
       </React.Fragment>
     ) : (
       <div className="L-Dropper">
-        Drop your video here!
+        <p>
+          Drop your video!
+        </p>
+        <p>
+          <Icon name="file_upload" size={2} />
+        </p>
       </div>
     ) }
   </Dropzone>
