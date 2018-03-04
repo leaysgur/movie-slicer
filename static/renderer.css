@@ -55,3 +55,8 @@ body {
 .Selector_Bar {
   background-color: #0094c8;
 }
+
+.Progress_Col {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const Time = ({ sec }) => (
+export const Time = ({ sec = 0 }) => (
   <span>{formatTime(sec)}</span>
 );
 
-export const Byte = ({ byte, unit }) => (
-  <span>{formatByte(byte, unit)}B</span>
+export const Byte = ({ byte = 0, unit }) => (
+  <span>{formatByte(byte, unit)}</span>
 );
 
 function formatTime(sec) {

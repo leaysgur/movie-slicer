@@ -13,6 +13,12 @@ class MovieStore {
       get duration() {
         return this.bfProbe.format.duration;
       },
+      get bfInfo() {
+        return this._toFormat(this.bfProbe);
+      },
+      get afInfo() {
+        return this._toFormat(this.afProbe);
+      },
     });
   }
 
@@ -20,6 +26,27 @@ class MovieStore {
     const currentTime = Math.max(0, this.duration * percentage);
     this.currentTime = currentTime;
     this.currentTimeDisp = currentTime;
+  }
+
+  _toFormat({ format, streams }) {
+    if (!(format && streams)) {
+      return null;
+    }
+
+    const videoStream = streams.find(stream => stream.codec_type === 'video') || {};
+    const audioStream = streams.find(stream => stream.codec_type === 'audio') || {};
+
+    return {
+      container: format.format_name,
+      videoCodec: videoStream.codec_name,
+      audioCodec: audioStream.codec_name,
+      size: format.size,
+      duration: format.duration,
+      bitRate: format.bit_rate,
+      resolutionWidth: videoStream.width,
+      resolutionHeight: videoStream.height,
+      frameRate: videoStream.r_frame_rate,
+    };
   }
 }
 

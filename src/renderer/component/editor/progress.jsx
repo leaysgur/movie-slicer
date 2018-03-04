@@ -1,10 +1,30 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import { InfoLabelColumn, InfoColumn } from './info';
+
 const Progress = ({ movie }) => (
-  <div>
-    {JSON.stringify(movie.bfProbe, null, 2)}
+  <div className="Progress">
+    <div className="Progress_Col">
+      <div>
+        <div>&nbsp;</div>
+        <InfoLabelColumn />
+      </div>
+      <div>
+        <div>Before</div>
+        <InfoColumn {...movie.bfInfo} />
+      </div>
+      <div>
+        <div>After</div>
+        { movie.afInfo ? (
+          <InfoColumn {...movie.afInfo} />
+        ) : (
+          <div>...</div>
+        ) }
+      </div>
+    </div>
   </div>
 );
+
 
 export default observer(Progress);
