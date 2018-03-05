@@ -46,7 +46,7 @@ select {
 .L-Dropper {
   padding-top: 40vh;
   text-align: center;
-  font-size: 2rem;
+  font-size: 48px;
 }
 
 .L-Player {
@@ -189,6 +189,7 @@ select {
 .Settings {}
 .Settings_Section {
   margin-bottom: 20px;
+  font-size: 18px;
 }
 .Settings_Item {
   display: grid;

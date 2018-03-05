@@ -57,6 +57,14 @@ const Settings = ({ settings, onChangeSettings, onClickClose, onClickUrl }) => (
             />
           </label>
         </li>
+        <li>
+          <label className="Settings_Item">
+            <span>Video codec: </span>
+            <select disabled>
+              <option>H.264</option>
+            </select>
+          </label>
+        </li>
       </ul>
     </div>
 
@@ -79,8 +87,10 @@ const Settings = ({ settings, onChangeSettings, onClickClose, onClickUrl }) => (
       </ul>
     </div>
 
-    <div className="Settings_Right">
-      Spec: <a href="#" onClick={() => onClickUrl('https://help.twitter.com/ja/using-twitter/twitter-videos')}>Twitter</a>
+    <div className="Settings_Section">
+      <div className="Settings_Right">
+        Spec: <a href="#" onClick={() => onClickUrl('https://help.twitter.com/ja/using-twitter/twitter-videos')}>Twitter</a>
+      </div>
     </div>
 
     <div className="Settings_Center">
