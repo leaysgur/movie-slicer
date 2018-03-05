@@ -23,6 +23,11 @@ class Event {
 
     movie.bfProbe = probeInfo;
     timeline.totalSec = movie.duration;
+
+    if (movie.duration < timeline.selectingSec) {
+      // value is not a problem
+      timeline.selectingSec = movie.duration / 2;
+    }
   }
 
   clearFile() {
