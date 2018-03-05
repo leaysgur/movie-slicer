@@ -9,6 +9,8 @@ class Event {
   async loadFile(file) {
     const { movie, timeline } = this._store;
 
+    this.clearFile();
+
     let probeInfo;
     try {
       const probeRes = await execCommand('cmd:ffprobe', {
@@ -96,8 +98,12 @@ class Event {
     ui.isProgressShown = bool;
   }
 
-  async startSlice() {
+  async saveSlice() {
     const { timeline, movie, settings } = this._store;
+
+    if (!movie.hasBfFile) {
+      return;
+    }
 
     // clear previous if exists
     movie.afProbe = {};
@@ -138,6 +144,10 @@ class Event {
 
   saveSnapshot() {
     const { timeline, movie, settings } = this._store;
+
+    if (!movie.hasBfFile) {
+      return;
+    }
 
     const outputName = `${timeline.selectStartSec}.png`;
     const output = `${settings.outputDir}/${outputName}`;

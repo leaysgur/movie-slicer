@@ -12,3 +12,7 @@ export function execCommand(name, options) {
     ipcRenderer.send(name, options);
   });
 }
+
+export function listenCommand(name, handler) {
+  ipcRenderer.on(name, handler);
+}

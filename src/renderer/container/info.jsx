@@ -21,7 +21,7 @@ const InfoContainer = ({ timeline, event }) => (
       <Icon
         onClick={() => {
           event.showProgress(true);
-          event.startSlice();
+          event.saveSlice();
         }}
         name="cut"
       />

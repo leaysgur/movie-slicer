@@ -1,15 +1,18 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 require('fix-path')();
 
-const command = require('./commander');
-const execute = require('./executer');
+const menuTemplate = require('./menu/template');
+const command = require('./external/commander');
+const execute = require('./external/executer');
 
 let win;
 module.exports = function(rootPath) {
   app.on('ready', createWindow);
 
   app.on('window-all-closed', () => {
-    ipcMain.removeAllListeners();
+    ipcMain.removeAllListeners('cmd:ffmpeg-slice');
+    ipcMain.removeAllListeners('cmd:ffmpeg-snap');
+    ipcMain.removeAllListeners('cmd:ffprobe');
     app.quit();
   });
 
@@ -40,6 +43,9 @@ module.exports = function(rootPath) {
     if (process.env.NODE_ENV === 'development') {
       win.webContents.openDevTools();
     }
+
+    const menu = Menu.buildFromTemplate(menuTemplate(win.webContents));
+    Menu.setApplicationMenu(menu);
 
     win.on('closed', () => {
       win = null;

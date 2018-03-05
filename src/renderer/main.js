@@ -8,6 +8,7 @@ import { Provider } from 'mobx-react';
 import Store from './store';
 import Event from './event';
 import Root from './container/root';
+import { listenCommand } from './util/ipc';
 
 const store = new Store({
   settings: {
@@ -23,6 +24,15 @@ if (process.env.NODE_ENV === 'development') {
     path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
   });
 }
+
+listenCommand('shortcut:openSettings', () => event.showSettings(true));
+listenCommand('shortcut:togglePause', () => event.togglePause());
+listenCommand('shortcut:clearFile', () => event.clearFile());
+listenCommand('shortcut:saveSnapshot', () => event.saveSnapshot());
+listenCommand('shortcut:saveSlice', () => {
+  event.showProgress(true);
+  event.saveSlice();
+});
 
 window.addEventListener('load', () => {
   ReactDOM.render(
