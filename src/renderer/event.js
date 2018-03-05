@@ -77,6 +77,13 @@ class Event {
     const { settings } = this._store;
     settings[prop] = value;
   }
+  selectOutputDir() {
+    const { settings } = this._store;
+    const dir = remote.dialog.showOpenDialog({ properties: ['openDirectory'] });
+    if (dir) {
+      settings.outputDir = dir;
+    }
+  }
 
   showProgress(bool) {
     const { ui } = this._store;

@@ -24,6 +24,7 @@ const PopupContainer = ({
       <Settings
         settings={settings}
         onChangeSettings={(prop, value) => event.updateSettings(prop, value)}
+        onClickOutputDir={() => event.selectOutputDir()}
         onClickClose={() => event.showSettings(false)}
         onClickUrl={url => event.openUrl(url)}
       />

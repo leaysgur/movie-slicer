@@ -4,7 +4,13 @@ import { observer } from 'mobx-react';
 import { MainHeading, SubHeading } from './heading';
 import Icon from './icon';
 
-const Settings = ({ settings, onChangeSettings, onClickClose, onClickUrl }) => (
+const Settings = ({
+  settings,
+  onChangeSettings,
+  onClickOutputDir,
+  onClickClose,
+  onClickUrl,
+}) => (
   <div className="Settings">
     <MainHeading>Settings</MainHeading>
 
@@ -36,8 +42,9 @@ const Settings = ({ settings, onChangeSettings, onClickClose, onClickUrl }) => (
             <span>Output dir: </span>
             <input
               type="text"
+              readOnly
               value={settings.outputDir}
-              onChange={ev => onChangeSettings('ouputDir', ev.target.value)}
+              onClick={() => onClickOutputDir()}
             />
           </label>
         </li>
