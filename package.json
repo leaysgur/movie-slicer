@@ -4,11 +4,11 @@
   "description": "Movie slicer",
   "main": "./index.js",
   "scripts": {
-    "start": "electron .",
+    "start": "NODE_ENV=development electron .",
     "dev": "webpack -w",
     "build": "NODE_ENV=production webpack",
     "lint": "eslint .",
-    "package": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64"
+    "package:mac": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64 --icon=./app_icon/MovieSlicer.icns --overwrite --ignore=\"^/node_modules\" --ignore=\"^/app_icon\" --ignore=\"^/src\""
   },
   "keywords": [],
   "author": "leader22",
