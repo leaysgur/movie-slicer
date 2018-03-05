@@ -9,18 +9,22 @@ const Timeline = ({
 }) => (
   <div className="Timeline">
     <div className="Timeline_Controls">
-      <button
+      <Icon
         onClick={ev => {
           ev.stopPropagation();
           onClickZoomOut();
         }}
-      ><Icon name="zoom_out" size="s" /></button>
-      <button
+        name="zoom_out"
+        size="s"
+      />
+      <Icon
         onClick={ev => {
           ev.stopPropagation();
           onClickZoomIn();
         }}
-      ><Icon name="zoom_in" size="s" /></button>
+        name="zoom_in"
+        size="s"
+      />
     </div>
     <div className="Timeline_Scroller">
       {children}

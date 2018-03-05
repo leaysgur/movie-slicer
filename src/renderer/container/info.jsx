@@ -10,12 +10,17 @@ const InfoContainer = ({ timeline, event }) => (
       <SelectingInfo timeline={timeline} />
     </div>
     <div>
-      <button onClick={() => event.showSettings(true)}
-      ><Icon name="settings" /></button>
-      <button onClick={() => {
-        event.showProgress(true);
-        event.startSlice();
-      }}><Icon name="cut" /></button>
+      <Icon
+        onClick={() => event.showSettings(true)}
+        name="settings"
+      />
+      <Icon
+        onClick={() => {
+          event.showProgress(true);
+          event.startSlice();
+        }}
+        name="cut"
+      />
     </div>
   </div>
 );

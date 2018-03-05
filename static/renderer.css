@@ -10,7 +10,6 @@ body {
   font-family: monospace;
   font-size: 24px;
 }
-
 /**
  *
  * Containers
@@ -42,7 +41,7 @@ body {
 
 .L-Info {
   display: grid;
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 1fr 120px;
   align-items: center;
 }
 
@@ -149,4 +148,18 @@ body {
 }
 .Icon.-l {
   height: 48px;
+}
+.IconButton {
+  -webkit-appearance: none;
+  border: none;
+  background-color: #000;
+  border-radius: 2px;
+}
+.IconButton.-s {
+  padding: 2px 6px;
+  margin: 0 2px;
+}
+.IconButton.-m {
+  padding: 4px 12px;
+  margin: 0 4px;
 }

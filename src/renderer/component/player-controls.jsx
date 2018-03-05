@@ -6,12 +6,16 @@ import Icon from '../component/icon';
 
 const PlayerControls = ({ movie, onClickTogglePause, onClickToggleMute }) => (
   <div className="PlayerControls">
-    <button onClick={() => onClickTogglePause()}>
-      <Icon name={movie.isPaused ? 'play' : 'pause'} size="s" />
-    </button>
-    <button onClick={() => onClickToggleMute()}>
-      <Icon name={movie.isMuted ? 'volume_off' : 'volume_on'} size="s" />
-    </button>
+    <Icon
+      onClick={() => onClickTogglePause()}
+      name={movie.isPaused ? 'play' : 'pause'}
+      size="s"
+    />
+    <Icon
+      onClick={() => onClickToggleMute()}
+      name={movie.isMuted ? 'volume_off' : 'volume_on'}
+      size="s"
+    />
     <Time sec={movie.currentTimeDisp} /> / <Time sec={movie.duration} />
   </div>
 );
