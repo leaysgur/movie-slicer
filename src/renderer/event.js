@@ -127,24 +127,26 @@ class Event {
     shell.showItemInFolder(movie.afPath);
   }
 
-  async saveSnapshot() {
+  saveSnapshot() {
     const { timeline, movie, settings } = this._store;
 
     const outputName = `${timeline.selectStartSec}.png`;
     const output = `${settings.outputDir}/${outputName}`;
-    try {
-      await execCommand('cmd:ffmpeg-snap', {
-        startSec: movie.currentTimeDisp,
-        input: movie.bfPath,
-        output,
-      });
-    } catch(err) {
+
+    // do not need to await for taking snapshot
+    execCommand('cmd:ffmpeg-snap', {
+      startSec: movie.currentTimeDisp,
+      input: movie.bfPath,
+      output,
+    })
+    .then(() => {
+      shell.showItemInFolder(output);
+    })
+    .catch(err => {
       console.error(err);
       remote.dialog.showErrorBox('Error', 'Open devtools for more detail.');
       return;
-    }
-
-    shell.showItemInFolder(output);
+    });
   }
 
   openUrl(url) {
