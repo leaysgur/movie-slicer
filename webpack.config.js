@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const rootPath = path.resolve('');
 
@@ -22,6 +23,9 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new webpack.DefinePlugin({}),
+  ],
 };
 
 module.exports = config;
