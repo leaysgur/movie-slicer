@@ -10,6 +10,25 @@ body {
   font-family: monospace;
   font-size: 24px;
 }
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+a {
+  color: #0094c8;
+}
+
+ul {
+  list-style: none;
+  padding-left: 5px;
+  margin: 0;
+}
+
+select {
+  height: 100%;
+}
+
 /**
  *
  * Containers
@@ -60,10 +79,11 @@ body {
   background-color: rgba(0, 0, 0, .8);
 }
 .Popup_Inner {
-  background-color: #fff;
+  background-color: #111;
   width: 70vw;
   margin: 20vh auto;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .Video {
@@ -72,6 +92,7 @@ body {
   object-fit: contain;
   background-color: #111;
 }
+
 .PlayerControls {
   display: flex;
   align-items: center;
@@ -135,6 +156,32 @@ body {
 .Progress_Col {
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
+}
+
+.MainHeading {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.SubHeading {
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  text-indent: 5px;
+}
+
+.Settings {}
+.Settings_Section {
+  margin-bottom: 20px;
+}
+.Settings_Item {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  margin-bottom: 10px;
+}
+.Settings_Note {
+  text-align: right;
+}
+.Settings_End {
+  text-align: center;
 }
 
 .Icon {
