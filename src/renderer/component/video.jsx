@@ -17,9 +17,8 @@ class Video extends React.Component {
         className="Video"
         src={movie.bfPath}
         autoPlay
-        muted
+        muted={movie.isMuted}
         onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
-        onClick={() => this._onClick()}
       ></video>
     );
   }

@@ -31,6 +31,15 @@ body {
   font-size: 2rem;
 }
 
+.L-Player {
+  position: relative;
+}
+.L-Player_Controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .L-Info {
   display: grid;
   grid-template-columns: 1fr 100px;
@@ -63,6 +72,12 @@ body {
   height: 100%;
   object-fit: contain;
   background-color: #111;
+}
+.PlayerControls {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  font-size: 12px;
 }
 
 .Timeline {

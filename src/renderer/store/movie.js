@@ -3,6 +3,8 @@ import { extendObservable, observable } from 'mobx';
 class MovieStore {
   constructor() {
     extendObservable(this, {
+      isPaused: false,
+      isMuted: true,
       currentTime: 0, // for manual update
       currentTimeDisp: 0, // sync by video
       bfProbe: observable.shallowObject({}),
