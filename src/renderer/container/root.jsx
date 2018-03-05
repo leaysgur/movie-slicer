@@ -29,9 +29,9 @@ const RootContainer = ({ movie, event }) => (
         <p>
           Drop your video!
         </p>
-        <p>
+        <div>
           <Icon name="file_upload" size={2} />
-        </p>
+        </div>
       </div>
     ) }
   </Dropzone>
