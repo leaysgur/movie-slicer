@@ -37,12 +37,14 @@ class Selector extends React.Component {
         ref={el => this._el = el}
         style={{ width: `${timelineWidth}px`, height: '100%', overflow: 'hidden' }}
         onMouseMove={ev => {
-          if (!this._isMouseDown) {
-            return;
+          if (this._isMouseDown && !this._isSelecting) {
+            this._onMouseDrag(ev);
           }
-          this._onMouseDrag(ev);
         }}
         onMouseDown={ev => {
+          if (this._isSelecting || ev.target !== this._el) {
+            return;
+          }
           this._isMouseDown = true;
           this._onMouseDrag(ev);
         }}
@@ -98,12 +100,6 @@ class Selector extends React.Component {
       movie,
       onDrag,
     } = this.props;
-    if (this._isSelecting) {
-      return;
-    }
-    if (ev.target !== this._el) {
-      return;
-    }
 
     // parent is scrollable
     const x = this._el.parentNode.scrollLeft + ev.clientX;
