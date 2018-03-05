@@ -6,7 +6,7 @@ class Video extends React.Component {
   constructor() {
     super();
     this._el = null;
-    this._disposer = null;
+    this._disposers = [];
   }
 
   render() {
@@ -16,7 +16,6 @@ class Video extends React.Component {
         ref={el => this._el = el}
         className="Video"
         src={movie.bfPath}
-        autoPlay
         muted={movie.isMuted}
         onTimeUpdate={ev => this._onTimeUpdate(ev.target)}
       ></video>
@@ -24,19 +23,23 @@ class Video extends React.Component {
   }
 
   componentDidMount() {
-    this._disposer = reaction(
-      () => this.props.movie.currentTime,
-      time => this._el.currentTime = time,
-      true
-    );
+    this._disposers = [
+      reaction(
+        () => this.props.movie.currentTime,
+        time => this._el.currentTime = time,
+        true
+      ),
+      reaction(
+        () => this.props.movie.isPaused,
+        isPaused => isPaused ? this._el.pause() : this._el.play(),
+        true
+      ),
+    ];
   }
   componentWillUnmount() {
-    this._disposer();
+    this._disposers.forEach(dispose => dispose());
   }
 
-  _onClick() {
-    this._el.paused ? this._el.play() : this._el.pause();
-  }
   _onTimeUpdate(el) {
     const { onTimeUpdate, timeline } = this.props;
 

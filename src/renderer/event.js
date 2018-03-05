@@ -30,11 +30,14 @@ class Event {
     movie.bfProbe = {};
   }
 
+  togglePause() {
+    const { movie } = this._store;
+    movie.isPaused = !movie.isPaused;
+  }
   toggleMute() {
     const { movie } = this._store;
     movie.isMuted = !movie.isMuted;
   }
-
   getVideoCurrentTime(el) {
     const { movie } = this._store;
     movie.currentTimeDisp = el.currentTime;

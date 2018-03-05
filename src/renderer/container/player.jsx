@@ -18,6 +18,7 @@ const PlayerContainer = ({
     <div className="L-Player_Controls">
       <PlayerControls
         movie={movie}
+        onClickTogglePause={() => event.togglePause()}
         onClickToggleMute={() => event.toggleMute()}
       />
     </div>

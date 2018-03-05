@@ -4,16 +4,13 @@ import { observer } from 'mobx-react';
 import { Time } from '../component/formatter';
 import Icon from '../component/icon';
 
-const PlayerControls = ({ movie, onClickToggleMute }) => (
+const PlayerControls = ({ movie, onClickTogglePause, onClickToggleMute }) => (
   <div className="PlayerControls">
-    <Icon name="play" size="s" />
-    <Icon name="pause" size="s" />
+    <button onClick={() => onClickTogglePause()}>
+      <Icon name={movie.isPaused ? 'play' : 'pause'} size="s" />
+    </button>
     <button onClick={() => onClickToggleMute()}>
-      { movie.isMuted ? (
-        <Icon name="volume_off" size="s" />
-      ) : (
-        <Icon name="volume_on" size="s" />
-      ) }
+      <Icon name={movie.isMuted ? 'volume_off' : 'volume_on'} size="s" />
     </button>
     <Time sec={movie.currentTimeDisp} /> / <Time sec={movie.duration} />
   </div>

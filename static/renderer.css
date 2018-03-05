@@ -83,11 +83,14 @@ body {
 .Timeline {
   position: relative;
   overflow: hidden;
+  border: 5px solid #000;
+  border-left: none;
+  border-right: none;
 }
 .Timeline_Scroller {
   height: 100%;
   overflow-x: auto;
-  background-color: #3C3C3C;
+  background-color: #333;
 }
 .Timeline_Controls {
   position: absolute;
