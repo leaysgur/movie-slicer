@@ -72,6 +72,14 @@ const Settings = ({
             </select>
           </label>
         </li>
+        <li>
+          <label className="Settings_Item">
+            <span>Audio codec: </span>
+            <select disabled>
+              <option>AAC</option>
+            </select>
+          </label>
+        </li>
       </ul>
     </div>
 

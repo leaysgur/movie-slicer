@@ -11,7 +11,7 @@ function ffmpegSlice({
   // input
   cmd += ` -ss ${startSec} -i "${input}"`;
   // output
-  cmd += ` -preset ${preset} -t ${time} -r ${frameRate} ${output}`;
+  cmd += ` -vcodec libx264 -acodec libfdk_aac -preset ${preset} -t ${time} -r ${frameRate} ${output}`;
 
   return cmd;
 }
