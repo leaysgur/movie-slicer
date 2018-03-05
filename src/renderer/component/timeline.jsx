@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Icon from './icon';
+
 const Timeline = ({
   onClickZoomOut,
   onClickZoomIn,
@@ -12,13 +14,13 @@ const Timeline = ({
           ev.stopPropagation();
           onClickZoomOut();
         }}
-      >-</button>
+      ><Icon name="zoom_out" size="s" /></button>
       <button
         onClick={ev => {
           ev.stopPropagation();
           onClickZoomIn();
         }}
-      >+</button>
+      ><Icon name="zoom_in" size="s" /></button>
     </div>
     <div className="Timeline_Scroller">
       {children}
