@@ -60,7 +60,7 @@ select {
 
 .L-Info {
   display: grid;
-  grid-template-columns: 1fr 120px;
+  grid-template-columns: 1fr 180px;
   align-items: center;
 }
 

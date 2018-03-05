@@ -97,7 +97,7 @@ class Event {
     const output = `${settings.outputDir}/${outputName}`;
 
     try {
-      await execCommand('cmd:ffmpeg', {
+      await execCommand('cmd:ffmpeg-slice', {
         startSec: timeline.selectStartSec,
         input: movie.bfPath,
         time: timeline.selectingSec,
@@ -125,6 +125,26 @@ class Event {
 
     movie.afProbe = probeInfo;
     shell.showItemInFolder(movie.afPath);
+  }
+
+  async saveSnapshot() {
+    const { timeline, movie, settings } = this._store;
+
+    const outputName = `${timeline.selectStartSec}.png`;
+    const output = `${settings.outputDir}/${outputName}`;
+    try {
+      await execCommand('cmd:ffmpeg-snap', {
+        startSec: movie.currentTimeDisp,
+        input: movie.bfPath,
+        output,
+      });
+    } catch(err) {
+      console.error(err);
+      remote.dialog.showErrorBox('Error', 'Open devtools for more detail.');
+      return;
+    }
+
+    shell.showItemInFolder(output);
   }
 
   openUrl(url) {

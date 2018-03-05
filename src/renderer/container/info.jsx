@@ -15,6 +15,10 @@ const InfoContainer = ({ timeline, event }) => (
         name="settings"
       />
       <Icon
+        onClick={() => event.saveSnapshot()}
+        name="camera"
+      />
+      <Icon
         onClick={() => {
           event.showProgress(true);
           event.startSlice();

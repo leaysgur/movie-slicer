@@ -19,9 +19,13 @@ module.exports = function(rootPath) {
     }
   });
 
-  ipcMain.on('cmd:ffmpeg', ({ sender }, arg) => {
-    const cmd = command.ffmpeg(arg);
-    execute.ffmpeg('cmd:ffmpeg', cmd, sender);
+  ipcMain.on('cmd:ffmpeg-slice', ({ sender }, arg) => {
+    const cmd = command.ffmpegSlice(arg);
+    execute.ffmpeg('cmd:ffmpeg-slice', cmd, sender);
+  });
+  ipcMain.on('cmd:ffmpeg-snap', ({ sender }, arg) => {
+    const cmd = command.ffmpegSnap(arg);
+    execute.ffmpeg('cmd:ffmpeg-snap', cmd, sender);
   });
   ipcMain.on('cmd:ffprobe', ({ sender }, arg) => {
     const cmd = command.ffprobe(arg);

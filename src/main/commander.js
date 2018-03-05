@@ -1,4 +1,4 @@
-function ffmpeg({
+function ffmpegSlice({
   startSec,
   input,
   preset,
@@ -12,6 +12,21 @@ function ffmpeg({
   cmd += ` -ss ${startSec} -i "${input}"`;
   // output
   cmd += ` -preset ${preset} -t ${time} -r ${frameRate} ${output}`;
+
+  return cmd;
+}
+
+function ffmpegSnap({
+  startSec,
+  input,
+  output,
+}) {
+  // base
+  let cmd = 'ffmpeg -loglevel error';
+  // input
+  cmd += ` -ss ${startSec} -i "${input}"`;
+  // output
+  cmd += ` -vframes 1 ${output}`;
 
   return cmd;
 }
@@ -30,6 +45,7 @@ function ffprobe({
 }
 
 module.exports = {
-  ffmpeg,
+  ffmpegSlice,
+  ffmpegSnap,
   ffprobe,
 };
