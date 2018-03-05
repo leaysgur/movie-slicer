@@ -36,19 +36,17 @@ class Selector extends React.Component {
         className="Selector"
         ref={el => this._el = el}
         style={{ width: `${timelineWidth}px`, height: '100%', overflow: 'hidden' }}
-        onClick={ev => {
-          if (this._isSelecting) {
+        onMouseMove={ev => {
+          if (!this._isMouseDown) {
             return;
           }
-          if (ev.target !== this._el) {
-            return;
-          }
-
-          // parent is scrollable
-          const x = this._el.parentNode.scrollLeft + ev.clientX;
-          // same as drag it
-          onDrag(x / timelineWidth);
+          this._onMouseDrag(ev);
         }}
+        onMouseDown={ev => {
+          this._isMouseDown = true;
+          this._onMouseDrag(ev);
+        }}
+        onMouseUp={() => this._isMouseDown = false}
       >
         <SelectorThumb
           movie={movie}
@@ -92,6 +90,26 @@ class Selector extends React.Component {
         />
       </div>
     );
+  }
+
+  _onMouseDrag(ev) {
+    const {
+      ui,
+      movie,
+      onDrag,
+    } = this.props;
+    if (this._isSelecting) {
+      return;
+    }
+    if (ev.target !== this._el) {
+      return;
+    }
+
+    // parent is scrollable
+    const x = this._el.parentNode.scrollLeft + ev.clientX;
+    const timelineWidth = ui.pxAs1Sec * movie.duration;
+    // same as drag it
+    onDrag(x / timelineWidth);
   }
 }
 
