@@ -13,7 +13,16 @@ const Progress = ({ movie, onClickClose }) => (
       <SubHeading>Status</SubHeading>
       <div className="Progress_Center">
         <p>
-          <Icon name={movie.afInfo ? 'done' : 'processing'} size="l" anim="spin" />
+          <Icon
+            {...movie.afInfo ? {
+              name: 'done',
+              size: 'l',
+            } : {
+              name: 'processing',
+              anim: 'spin',
+              size: 'l',
+            }}
+          />
         </p>
       </div>
     </div>
