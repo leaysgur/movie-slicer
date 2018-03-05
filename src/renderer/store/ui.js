@@ -9,8 +9,7 @@ class UiStore {
     extendObservable(this, {
       zoomLv: 3,
       isProgressShown: false,
-      // isSettingsShown: false,
-      isSettingsShown: true,
+      isSettingsShown: false,
       get pxAs1Sec() {
         return this.zoomLvs[this.zoomLv];
       },

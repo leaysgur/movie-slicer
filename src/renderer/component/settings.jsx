@@ -79,14 +79,14 @@ const Settings = ({ settings, onChangeSettings, onClickClose, onClickUrl }) => (
       </ul>
     </div>
 
-    <div className="Settings_Note">
+    <div className="Settings_Right">
       Spec: <a href="#" onClick={() => onClickUrl('https://help.twitter.com/ja/using-twitter/twitter-videos')}>Twitter</a>
     </div>
 
-    <div className="Settings_End">
+    <div className="Settings_Center">
       <Icon
         onClick={() => onClickClose()}
-        name="check"
+        name="close"
         size="m"
       />
     </div>

@@ -153,9 +153,27 @@ select {
   background-color: #000;
 }
 
+.Progress {}
+.Progress_Section {
+  margin-bottom: 20px;
+}
 .Progress_Col {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr;
+  grid-template-columns: 150px 1fr 1fr;
+  grid-gap: 20px;
+  font-size: 18px;
+}
+.Progress_Col > div > div {
+  margin-bottom: 5px;
+}
+.Progress_Right {
+  text-align: right;
+}
+.Progress_Center {
+  text-align: center;
+}
+.Progress_Bold {
+  font-weight: bold;
 }
 
 .MainHeading {
@@ -177,10 +195,10 @@ select {
   grid-template-columns: 300px 1fr;
   margin-bottom: 10px;
 }
-.Settings_Note {
+.Settings_Right {
   text-align: right;
 }
-.Settings_End {
+.Settings_Center {
   text-align: center;
 }
 
@@ -195,6 +213,17 @@ select {
 }
 .Icon.-l {
   height: 48px;
+}
+.Icon.-spin {
+  animation: icon-spin 2s infinite linear;
+}
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
 .IconButton {
   -webkit-appearance: none;
