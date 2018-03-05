@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === 'development') {
   window.event = event;
   event.loadFile({
     path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
-    // path: '/Users/leader22/Desktop/out.mp4',
   });
 }
 
