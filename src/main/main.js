@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+require('fix-path')();
 
 const command = require('./commander');
 const execute = require('./executer');

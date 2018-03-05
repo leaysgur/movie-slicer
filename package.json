@@ -1,12 +1,14 @@
 {
   "name": "movie-slicer",
   "version": "0.0.0",
-  "description": "Movie slicer for Twitter",
-  "main": "./src/index.js",
+  "description": "Movie slicer",
+  "main": "./index.js",
   "scripts": {
     "start": "electron .",
     "dev": "webpack -w",
-    "lint": "eslint ."
+    "build": "NODE_ENV=production webpack",
+    "lint": "eslint .",
+    "package": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64"
   },
   "keywords": [],
   "author": "leader22",
@@ -21,12 +23,14 @@
     "babel-loader": "^7.1.2",
     "babel-preset-react": "^6.24.1",
     "electron": "^1.8.2",
+    "electron-packager": "^11.1.0",
     "electron-reloader": "^0.2.0",
     "eslint": "^4.18.1",
     "eslint-plugin-react": "^7.7.0",
     "webpack": "^3.11.0"
   },
   "dependencies": {
+    "fix-path": "^2.1.0",
     "mobx": "^3.6.1",
     "mobx-react": "^4.4.2",
     "react": "^16.2.0",
