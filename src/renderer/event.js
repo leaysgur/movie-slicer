@@ -28,6 +28,7 @@ class Event {
   clearFile() {
     const { movie } = this._store;
     movie.bfProbe = {};
+    movie.afProbe = {};
   }
 
   togglePause() {
@@ -92,6 +93,9 @@ class Event {
 
   async startSlice() {
     const { timeline, movie, settings } = this._store;
+
+    // clear previous if exists
+    movie.afProbe = {};
 
     const outputName = `${timeline.selectStartSec}-${timeline.selectStartSec + timeline.selectingSec}.mp4`;
     const output = `${settings.outputDir}/${outputName}`;
