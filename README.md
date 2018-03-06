@@ -1,12 +1,8 @@
 # movie-slicer
 
-<center>
-  <img src="./assets/img/icon.png" width="160" alt="MovieSlicer">
-</center>
+![MovieSlicer](./assets/img/app.png)
 
 ## Usage
-
-![MovieSlicer](./assets/img/app.png)
 
 - Drop your video
 - Select ranges to slice with preview
