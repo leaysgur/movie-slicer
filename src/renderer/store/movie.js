@@ -4,9 +4,11 @@ class MovieStore {
   constructor() {
     extendObservable(this, {
       isPaused: false,
-      isMuted: true,
+      isMuted: false,
+
       currentTime: 0, // for manual update
       currentTimeDisp: 0, // sync by video
+
       bfProbe: observable.shallowObject({}),
       afProbe: observable.shallowObject({}),
       get hasBfFile() {
