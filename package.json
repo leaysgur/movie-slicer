@@ -8,7 +8,7 @@
     "dev": "webpack --mode development -w",
     "build": "webpack --mode production",
     "lint": "eslint .",
-    "package:mac": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64 --icon=./app_icon/MovieSlicer.icns --overwrite --ignore=\"^/node_modules\" --ignore=\"^/app_icon\" --ignore=\"^/src\""
+    "package:mac": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64 --icon=./app_icon/MovieSlicer.icns --overwrite --ignore=\"^/node_modules\" --ignore=\"^/app_icon\" --ignore=\"^/src/renderer\""
   },
   "keywords": [],
   "author": "leader22",
