@@ -7,7 +7,7 @@ function ffmpegSlice({
   output,
 }) {
   // base
-  let cmd = 'ffmpeg -loglevel error';
+  let cmd = 'ffmpeg -y -loglevel error';
   // input
   cmd += ` -ss ${startSec} -i "${input}"`;
   // output
@@ -22,7 +22,7 @@ function ffmpegSnap({
   output,
 }) {
   // base
-  let cmd = 'ffmpeg -loglevel error';
+  let cmd = 'ffmpeg -y -loglevel error';
   // input
   cmd += ` -ss ${startSec} -i "${input}"`;
   // output
