@@ -20,8 +20,11 @@ const event = new Event(store);
 if (process.env.NODE_ENV === 'development') {
   window.store = store;
   window.event = event;
-  event.loadFile({
-    path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
+
+  requestIdleCallback(() => {
+    event.loadFile({
+      path: '/Users/leader22/Sandbox/ffmpeg-test/mov.mp4',
+    });
   });
 }
 

@@ -232,6 +232,9 @@ select {
   background-color: #000;
   border-radius: 2px;
 }
+.IconButton[disabled] {
+  opacity: .2;
+}
 .IconButton.-s {
   padding: 2px 6px;
   margin: 0 2px;

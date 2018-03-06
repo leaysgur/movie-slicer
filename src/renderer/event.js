@@ -99,12 +99,13 @@ class Event {
   }
 
   async saveSlice() {
-    const { timeline, movie, settings } = this._store;
+    const { timeline, movie, settings, ui } = this._store;
 
     if (!movie.hasBfFile) {
       return;
     }
 
+    ui.isSlicing = true;
     // clear previous if exists
     movie.afProbe = {};
 
@@ -140,6 +141,7 @@ class Event {
 
     movie.afProbe = probeInfo;
     shell.showItemInFolder(movie.afPath);
+    ui.isSlicing = false;
   }
 
   saveSnapshot() {

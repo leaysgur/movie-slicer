@@ -10,6 +10,7 @@ class UiStore {
       zoomLv: 3,
       isProgressShown: false,
       isSettingsShown: false,
+      isSlicing: false,
       get pxAs1Sec() {
         return this.zoomLvs[this.zoomLv];
       },
