@@ -1,14 +1,14 @@
 {
   "name": "movie-slicer",
-  "version": "0.0.0",
-  "description": "Movie slicer",
+  "version": "1.0.0",
+  "description": "Slice your favorite scenes from movie file.",
   "main": "./index.js",
   "scripts": {
     "start": "NODE_ENV=development electron .",
     "dev": "webpack --mode development -w",
     "build": "webpack --mode production",
     "lint": "eslint .",
-    "package:mac": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64 --icon=./app_icon/MovieSlicer.icns --overwrite --ignore=\"^/node_modules\" --ignore=\"^/app_icon\" --ignore=\"^/src/renderer\""
+    "package:mac": "electron-packager ./ MovieSlicer --platform=darwin --arch=x64 --icon=./assets/app_icon/MovieSlicer.icns --overwrite --ignore=\"^/node_modules\" --ignore=\"^/app_icon\" --ignore=\"^/src/renderer\""
   },
   "keywords": [],
   "author": "leader22",
