@@ -24,15 +24,15 @@ module.exports = function(rootPath) {
 
   ipcMain.on('cmd:ffmpeg-slice', ({ sender }, arg) => {
     const cmd = command.ffmpegSlice(arg);
-    execute.ffmpeg('cmd:ffmpeg-slice', cmd, sender);
+    execute('cmd:ffmpeg-slice', cmd, sender);
   });
   ipcMain.on('cmd:ffmpeg-snap', ({ sender }, arg) => {
     const cmd = command.ffmpegSnap(arg);
-    execute.ffmpeg('cmd:ffmpeg-snap', cmd, sender);
+    execute('cmd:ffmpeg-snap', cmd, sender);
   });
   ipcMain.on('cmd:ffprobe', ({ sender }, arg) => {
     const cmd = command.ffprobe(arg);
-    execute.ffmpeg('cmd:ffprobe', cmd, sender);
+    execute('cmd:ffprobe', cmd, sender);
   });
 
   function createWindow() {

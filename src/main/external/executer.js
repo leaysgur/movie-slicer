@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 
-function ffmpeg(evName, cmd, sender) {
+module.exports = function(evName, cmd, sender) {
   exec(cmd, (err, stdout, stderr) => {
     if (err) {
       return sender.send(`${evName}:result`, {
@@ -15,8 +15,4 @@ function ffmpeg(evName, cmd, sender) {
       payload: stderr || stdout,
     });
   });
-}
-
-module.exports = {
-  ffmpeg,
 };
