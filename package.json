@@ -1,6 +1,6 @@
 {
   "name": "movie-slicer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Slice your favorite scenes from movie file.",
   "main": "./index.js",
   "scripts": {
