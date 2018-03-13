@@ -19,7 +19,7 @@ class SelectorThumb extends React.Component {
     this._disposer = reaction(
       () => [this.props.ui.pxAs1Sec, this.props.movie.bfPath],
       () => this._render(),
-      true
+      { fireImmediately: true }
     );
   }
   componentWillUnmount() {

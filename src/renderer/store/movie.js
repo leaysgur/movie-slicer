@@ -1,35 +1,34 @@
-import { extendObservable, observable } from 'mobx';
+import { decorate, observable, computed } from 'mobx';
 
 class MovieStore {
   constructor() {
-    extendObservable(this, {
-      isPaused: false,
-      isMuted: false,
+    this.isPaused = false;
+    this.isMuted = false;
 
-      currentTime: 0, // for manual update
-      currentTimeDisp: 0, // sync by video
+    this.currentTime = 0; // for manual update
+    this.currentTimeDisp = 0; // sync by video
 
-      bfProbe: observable.shallowObject({}),
-      afProbe: observable.shallowObject({}),
-      get hasBfFile() {
-        return 'format' in this.bfProbe;
-      },
-      get bfPath() {
-        return this.bfProbe.format.filename;
-      },
-      get afPath() {
-        return this.afProbe.format.filename;
-      },
-      get duration() {
-        return this.bfProbe.format.duration;
-      },
-      get bfInfo() {
-        return this._toFormat(this.bfProbe);
-      },
-      get afInfo() {
-        return this._toFormat(this.afProbe);
-      },
-    });
+    this.bfProbe = {};
+    this.afProbe = {};
+  }
+
+  get hasBfFile() {
+    return 'format' in this.bfProbe;
+  }
+  get bfPath() {
+    return this.bfProbe.format.filename;
+  }
+  get afPath() {
+    return this.afProbe.format.filename;
+  }
+  get duration() {
+    return this.bfProbe.format.duration;
+  }
+  get bfInfo() {
+    return this._toFormat(this.bfProbe);
+  }
+  get afInfo() {
+    return this._toFormat(this.afProbe);
   }
 
   updateCurrentTime(percentage) {
@@ -60,4 +59,18 @@ class MovieStore {
   }
 }
 
+decorate(MovieStore, {
+  isPaused: observable,
+  isMuted: observable,
+  currentTime: observable,
+  currentTimeDisp: observable,
+  bfProbe: observable.ref,
+  afProbe: observable.ref,
+  hasBfFile: computed,
+  bfPath: computed,
+  afPath: computed,
+  duration: computed,
+  bfInfo: computed,
+  afInfo: computed,
+});
 export default MovieStore;

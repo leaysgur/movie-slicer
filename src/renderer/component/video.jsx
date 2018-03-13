@@ -27,12 +27,12 @@ class Video extends React.Component {
       reaction(
         () => this.props.movie.currentTime,
         time => this._el.currentTime = time,
-        true
+        { fireImmediately: true }
       ),
       reaction(
         () => this.props.movie.isPaused,
         isPaused => isPaused ? this._el.pause() : this._el.play(),
-        true
+        { fireImmediately: true }
       ),
     ];
   }

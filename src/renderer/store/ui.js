@@ -1,23 +1,20 @@
-import { extendObservable } from 'mobx';
+import { decorate, observable, computed } from 'mobx';
 
 class UiStore {
   constructor() {
-    Object.assign(this, {
-      zoomLvs: [0.125, 0.25, 0.5, 1, 2.5, 5, 10],
-    });
+    this.zoomLvs = [0.125, 0.25, 0.5, 1, 2.5, 5, 10];
 
-    extendObservable(this, {
-      zoomLv: 3,
-      isProgressShown: false,
-      isSettingsShown: false,
-      isSlicing: false,
-      get pxAs1Sec() {
-        return this.zoomLvs[this.zoomLv];
-      },
-      get isPopupShown() {
-        return this.isProgressShown || this.isSettingsShown;
-      },
-    });
+    this.zoomLv = 3;
+    this.isProgressShown = false;
+    this.isSettingsShown = false;
+    this.isSlicing = false;
+  }
+
+  get pxAs1Sec() {
+    return this.zoomLvs[this.zoomLv];
+  }
+  get isPopupShown() {
+    return this.isProgressShown || this.isSettingsShown;
   }
 
   zoomIn() {
@@ -28,4 +25,12 @@ class UiStore {
   }
 }
 
+decorate(UiStore, {
+  zoomLv: observable,
+  isProgressShown: observable,
+  isSettingsShown: observable,
+  isSlicing: observable,
+  pxAs1Sec: computed,
+  isPopupShown: computed,
+});
 export default UiStore;

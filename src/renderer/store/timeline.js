@@ -1,15 +1,14 @@
-import { extendObservable } from 'mobx';
+import { decorate, observable, computed, } from 'mobx';
 
 class TimelineStore {
   constructor() {
-    extendObservable(this, {
-      totalSec: 0,
-      selectStartSec: 0,
-      selectingSec: 30,
-      get selectEndSec() {
-        return this.selectStartSec + this.selectingSec;
-      },
-    });
+    this.totalSec = 0;
+    this.selectStartSec = 0;
+    this.selectingSec = 30;
+  }
+
+  get selectEndSec() {
+    return this.selectStartSec + this.selectingSec;
   }
 
   updateSelectStartSec(percentage) {
@@ -23,4 +22,10 @@ class TimelineStore {
   }
 }
 
+decorate(TimelineStore, {
+  totalSec: observable,
+  selectStartSec: observable,
+  selectingSec: observable,
+  selectEndSec: computed,
+});
 export default TimelineStore;
